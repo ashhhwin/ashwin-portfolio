@@ -5,7 +5,6 @@ import { useInView } from "framer-motion"
 import { useRef } from "react"
 import { experience } from "@/data/experience"
 import { Calendar, MapPin, CheckCircle, Briefcase } from "lucide-react"
-import Image from "next/image"
 
 // This needs to be kept in sync with the topics in hero.tsx
 const topics = [
@@ -124,12 +123,17 @@ export function Experience({ selectedExpertise }: ExperienceProps) {
                       <div className={`flex items-center gap-3 mb-3 ${index % 2 === 0 ? 'md:justify-end' : 'md:justify-start'}`}>
                         {job.logo && (
                           <div className="w-12 h-12 rounded-lg bg-background border border-border flex items-center justify-center overflow-hidden">
-                            <Image
+                            <img
                               src={job.logo}
                               alt={`${job.company} logo`}
-                              width={40}
-                              height={40}
                               className="object-contain w-full h-full"
+                              onError={(e) => {
+                                console.error(`Failed to load image: ${job.logo}`);
+                                e.currentTarget.style.display = 'none';
+                              }}
+                              onLoad={() => {
+                                console.log(`Successfully loaded image: ${job.logo}`);
+                              }}
                             />
                           </div>
                         )}

@@ -5,7 +5,6 @@ import { useInView } from "framer-motion"
 import { useRef } from "react"
 import { certifications } from "@/data/certifications"
 import { Award, ExternalLink } from "lucide-react"
-import Image from "next/image"
 
 export function Certifications() {
   const ref = useRef(null)
@@ -55,12 +54,10 @@ export function Certifications() {
                 <div className="flex items-start space-x-4">
                   <div className="flex-shrink-0 w-12 h-12 bg-background border border-border rounded-lg flex items-center justify-center overflow-hidden">
                     {cert.logo ? (
-                      <Image
+                      <img
                         src={cert.logo}
                         alt={`${cert.issuer} logo`}
-                        width={32}
-                        height={32}
-                        className="object-contain"
+                        className="object-contain w-8 h-8"
                       />
                     ) : (
                       <Award className="w-6 h-6 text-primary" />
