@@ -10,21 +10,25 @@ export const certifications: Certification[] = [
   {
     name: "Google Advanced Data Analytics",
     issuer: "Google",
-    year: "2024"
+    year: "2024",
+    url: "https://www.coursera.org/account/accomplishments/certificate/example"
   },
   {
     name: "IBM AI Engineering",
     issuer: "IBM",
-    year: "2024"
+    year: "2024",
+    url: "https://www.coursera.org/account/accomplishments/certificate/example"
   },
   {
     name: "NVIDIA Deep Learning",
     issuer: "NVIDIA",
-    year: "2023"
+    year: "2023",
+    url: "https://courses.nvidia.com/certificates/example"
   },
   {
     name: "Microsoft Azure Data Fundamentals",
     issuer: "Microsoft",
-    year: "2023"
+    year: "2023",
+    url: "https://www.credly.com/badges/example"
   }
 ]; 

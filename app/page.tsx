@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Hero } from "@/components/sections/hero";
 import { Experience } from "@/components/sections/experience";
 import { Projects } from "@/components/sections/projects";
@@ -11,6 +11,17 @@ import { Contact } from "@/components/sections/contact";
 export default function Home() {
   const [selectedExpertise, setSelectedExpertise] = useState<string | null>(null);
   const [showEducation, setShowEducation] = useState(false);
+
+  useEffect(() => {
+    const handleShowEducation = () => {
+      setShowEducation(true);
+    };
+
+    window.addEventListener('showEducation', handleShowEducation);
+    return () => {
+      window.removeEventListener('showEducation', handleShowEducation);
+    };
+  }, []);
 
   return (
     <div>

@@ -4,7 +4,8 @@ import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef } from "react"
 import { certifications } from "@/data/certifications"
-import { Award } from "lucide-react"
+import { Award, ExternalLink } from "lucide-react"
+import Image from "next/image"
 
 export function Certifications() {
   const ref = useRef(null)
@@ -48,14 +49,34 @@ export function Certifications() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: index * 0.15, duration: 0.7, ease: "easeOut" }}
-                className="flex items-start space-x-4 p-4 rounded-lg hover:bg-primary/5 transition-colors"
+                className={`group p-6 rounded-lg border border-border hover:border-primary/30 hover:bg-primary/5 transition-all duration-300 ${cert.url ? 'cursor-pointer' : ''}`}
+                onClick={() => cert.url && window.open(cert.url, '_blank', 'noopener,noreferrer')}
               >
-                <div className="flex-shrink-0 w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
-                  <Award className="w-5 h-5 text-primary" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-foreground">{cert.name}</h3>
-                  <p className="text-sm text-muted-foreground">{cert.issuer} - {cert.year}</p>
+                <div className="flex items-start space-x-4">
+                  <div className="flex-shrink-0 w-12 h-12 bg-background border border-border rounded-lg flex items-center justify-center overflow-hidden">
+                    {cert.logo ? (
+                      <Image
+                        src={cert.logo}
+                        alt={`${cert.issuer} logo`}
+                        width={32}
+                        height={32}
+                        className="object-contain"
+                      />
+                    ) : (
+                      <Award className="w-6 h-6 text-primary" />
+                    )}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2">
+                      <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">
+                        {cert.name}
+                      </h3>
+                      {cert.url && (
+                        <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+                      )}
+                    </div>
+                    <p className="text-sm text-muted-foreground mt-1">{cert.issuer} • {cert.year}</p>
+                  </div>
                 </div>
               </motion.div>
             ))}

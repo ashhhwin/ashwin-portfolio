@@ -11,6 +11,7 @@ const navItems = [
   { name: "Experience", href: "#experience" },
   { name: "Projects", href: "#projects" },
   { name: "Education", href: "#education" },
+  { name: "Certifications", href: "#certifications" },
   { name: "Contact", href: "#contact" },
 ]
 
@@ -39,6 +40,8 @@ export function Navigation({ onShowEducation }: NavigationProps) {
   }
 
   const handleEducationClick = () => {
+    // Dispatch custom event to show education
+    window.dispatchEvent(new CustomEvent('showEducation'));
     if (onShowEducation) {
       onShowEducation()
     }

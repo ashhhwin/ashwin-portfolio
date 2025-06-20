@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'export',
+  trailingSlash: true,
   images: {
+    unoptimized: true,
     domains: ['drive.google.com', 'github.com'],
   },
   async headers() {
@@ -24,6 +27,9 @@ const nextConfig = {
       },
     ]
   },
+  experimental: {
+    appDir: true
+  }
 }
 
 module.exports = nextConfig 

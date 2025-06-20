@@ -24,7 +24,9 @@ export const experience: Experience[] = [
       "NLP sentiment fusion",
       "Option-flow signal models"
     ],
-    technologies: ["Python", "AWS", "Apache Spark", "NLP", "Machine Learning", "ETL", "Real-time Processing"]
+    technologies: ["Python", "AWS", "Apache Spark", "NLP", "Machine Learning", "ETL", "Real-time Processing"],
+    website: "https://evoketechnologies.com",
+    logo: "/logos/evoke_technologies_logo.jpeg"
   },
   {
     id: "argonne",
@@ -37,7 +39,9 @@ export const experience: Experience[] = [
       "Monocular vision CAV distance estimation with <10% error",
       "Safety/energy focus"
     ],
-    technologies: ["Computer Vision", "Python", "OpenCV", "Deep Learning", "Autonomous Vehicles", "Research"]
+    technologies: ["Computer Vision", "Python", "OpenCV", "Deep Learning", "Autonomous Vehicles", "Research"],
+    website: "https://www.anl.gov",
+    logo: "/logos/argonne-logo.png"
   },
   {
     id: "prodapt",
@@ -51,7 +55,9 @@ export const experience: Experience[] = [
       "Drift monitoring",
       "Dashboard development"
     ],
-    technologies: ["Python", "Real-time Processing", "Anomaly Detection", "Dashboard", "Monitoring", "ETL"]
+    technologies: ["Python", "Real-time Processing", "Anomaly Detection", "Dashboard", "Monitoring", "ETL"],
+    website: "https://prodapt.com",
+    logo: "/logos/Prodapt-logo-scaled.jpg"
   },
   {
     id: "aspire",
@@ -65,6 +71,8 @@ export const experience: Experience[] = [
       "Real-time alerting",
       "15% availability boost"
     ],
-    technologies: ["Computer Vision", "YOLOv5", "Python", "Retail Analytics", "Real-time Alerting", "Deep Learning"]
+    technologies: ["Computer Vision", "YOLOv5", "Python", "Retail Analytics", "Real-time Alerting", "Deep Learning"],
+    website: "https://aspiresys.com",
+    logo: "/logos/aspire-logo.png"
   }
 ]; 

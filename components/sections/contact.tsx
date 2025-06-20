@@ -43,7 +43,7 @@ export function Contact() {
     },
     {
       name: "GitHub",
-      url: "https://github.com/ashwinramv",
+      url: "https://github.com/ashhhwin",
       icon: Github,
     },
     {
@@ -127,7 +127,7 @@ export function Contact() {
                 <div className="space-y-3">
                   <p className="flex items-center gap-3 font-medium text-foreground"><Mail className="text-primary"/> ashwin.ram@uchicago.edu</p>
                   <p className="flex items-center gap-3 font-medium text-foreground"><Linkedin className="text-primary"/> /in/ashwinramv</p>
-                  <p className="flex items-center gap-3 font-medium text-foreground"><Github className="text-primary"/> /ashwinramv</p>
+                  <p className="flex items-center gap-3 font-medium text-foreground"><Github className="text-primary"/> /ashhhwin</p>
                 </div>
                 <div className="flex space-x-4 pt-4">
                   {socialLinks.map((link) => (
