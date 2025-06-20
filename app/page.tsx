@@ -8,14 +8,9 @@ import { Education } from "@/components/sections/education";
 import { Certifications } from "@/components/sections/certifications";
 import { Contact } from "@/components/sections/contact";
 
-interface HomeProps {
-  showEducation?: boolean;
-  setShowEducation?: (show: boolean) => void;
-}
-
-export default function Home(props: HomeProps) {
-  const { showEducation = false, setShowEducation } = props || {};
+export default function Home() {
   const [selectedExpertise, setSelectedExpertise] = useState<string | null>(null);
+  const [showEducation, setShowEducation] = useState(false);
 
   return (
     <div>
