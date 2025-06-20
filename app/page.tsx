@@ -13,8 +13,8 @@ interface HomeProps {
   setShowEducation?: (show: boolean) => void;
 }
 
-export default function Home(props: HomeProps = {}) {
-  const { showEducation = false, setShowEducation } = props;
+export default function Home(props: HomeProps) {
+  const { showEducation = false, setShowEducation } = props || {};
   const [selectedExpertise, setSelectedExpertise] = useState<string | null>(null);
 
   return (
