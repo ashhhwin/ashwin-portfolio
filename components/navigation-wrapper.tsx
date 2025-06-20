@@ -6,13 +6,16 @@ import Home from '@/app/page'
 
 export function NavigationWrapper() {
   const handleShowEducation = () => {
-    // Scroll to education section after a brief delay
-    setTimeout(() => {
+    // Use requestAnimationFrame for smoother scrolling
+    requestAnimationFrame(() => {
       const educationSection = document.getElementById('education')
       if (educationSection) {
-        educationSection.scrollIntoView({ behavior: 'smooth' })
+        educationSection.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        })
       }
-    }, 100)
+    })
   }
 
   return (

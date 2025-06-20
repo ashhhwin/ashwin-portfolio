@@ -1,7 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
-  trailingSlash: true,
   images: {
     unoptimized: true,
     domains: ['drive.google.com', 'github.com'],
@@ -26,9 +24,6 @@ const nextConfig = {
         ],
       },
     ]
-  },
-  experimental: {
-    appDir: true
   }
 }
 

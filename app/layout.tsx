@@ -9,22 +9,23 @@ import { CursorGlow } from '@/components/cursor-glow'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Ashwin Ram - Data Scientist & AI Engineer',
+  title: 'Ashwin Ram | Data Scientist & AI Engineer',
   description: 'Chicago-based data scientist obsessed with turning messy data into market-moving insight. I build scalable ML & GenAI solutions that ship.',
   keywords: ['data scientist', 'AI engineer', 'machine learning', 'Chicago', 'UChicago', 'portfolio'],
   authors: [{ name: 'Ashwin Ram' }],
   creator: 'Ashwin Ram',
+  metadataBase: new URL('https://ashwinram.dev'),
   openGraph: {
     type: 'website',
     locale: 'en_US',
     url: 'https://ashwinram.dev',
-    title: 'Ashwin Ram - Data Scientist & AI Engineer',
+    title: 'Ashwin Ram | Data Scientist & AI Engineer',
     description: 'Chicago-based data scientist obsessed with turning messy data into market-moving insight.',
     siteName: 'Ashwin Ram Portfolio',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Ashwin Ram - Data Scientist & AI Engineer',
+    title: 'Ashwin Ram | Data Scientist & AI Engineer',
     description: 'Chicago-based data scientist obsessed with turning messy data into market-moving insight.',
   },
   robots: {
@@ -41,6 +42,12 @@ export const metadata: Metadata = {
   verification: {
     google: 'your-google-verification-code',
   },
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
+    shortcut: '/favicon.svg',
+  },
 }
 
 export default function RootLayout({
@@ -50,13 +57,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-        <link rel="manifest" href="/site.webmanifest" />
-      </head>
       <body className={cn(
         "min-h-screen font-sans antialiased",
         inter.className
