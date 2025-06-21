@@ -30,51 +30,51 @@ export const experience: Experience[] = [
     logo: "/images/evoke_technologies_logo.png"
   },
   {
+    id: "argonne",
+    company: "Argonne National Laboratory",
+    role: "Capstone Researcher",
+    period: "04/2025 – Present",
+    duration: "9 months",
+    location: "Chicago, IL",
+    description: "Researching computer vision solutions for connected autonomous vehicles, focusing on safety and energy efficiency.",
+    highlights: [
+      "Monocular depth estimation for autonomous vehicles with sub-10% error rates",
+      "Computer vision algorithms for safety-critical ADAS applications",
+      "Research contributions to energy-efficient autonomous navigation systems"
+    ],
+    technologies: ["Computer Vision", "PyTorch", "OpenCV", "Deep Learning", "Autonomous Vehicles", "Research & Development"],
+    logo: "/images/argonne_national_laboratory.png"
+  },
+  {
     id: "prodapt",
     company: "Prodapt",
-    role: "Data Science Intern",
+    role: "Data Scientist Intern",
     period: "01/2025 – 05/2025",
     duration: "5 months",
     location: "Chennai, India",
-    description: "Developed machine learning models for customer segmentation and retention analysis, improving business insights and decision-making processes.",
+    description: "Developed conversational AI solutions and customer segmentation models for enterprise clients.",
     highlights: [
-      "Built predictive models for customer churn analysis with 85% accuracy",
-      "Implemented automated data pipelines reducing processing time by 60%",
-      "Created interactive dashboards for real-time business intelligence"
+      "Built conversational impact analyzer with 85% accuracy for customer sentiment analysis",
+      "Implemented customer segmentation model improving retention by 23%",
+      "Created automated reporting dashboards reducing manual work by 60%"
     ],
-    technologies: ["Python", "Machine Learning", "Data Analysis", "SQL", "Tableau"],
+    technologies: ["Python", "Machine Learning", "NLP", "SQL", "Tableau"],
     logo: "/images/Prodapt-logo.png"
   },
   {
     id: "aspire",
     company: "Aspire Systems",
-    role: "Data Scientist Intern",
-    period: "06/2024 – 12/2024",
-    duration: "6 months",
+    role: "Data Science Intern",
+    period: "05/2024 – 08/2024",
+    duration: "4 months",
     location: "Chennai, India",
-    description: "Focused on retail analytics and consumer behavior modeling, developing solutions for customer segmentation and market trend analysis.",
+    description: "Developed healthcare AI models and demand forecasting solutions for retail clients.",
     highlights: [
-      "Developed customer segmentation models using clustering algorithms",
-      "Analyzed market trends and consumer behavior patterns",
-      "Created automated reporting systems for business stakeholders"
+      "Built healthcare outreach ROI model with 92% prediction accuracy",
+      "Developed event-driven demand shock forecaster for retail optimization",
+      "Created automated data pipelines processing 10M+ records daily"
     ],
-    technologies: ["Python", "R", "Machine Learning", "Statistical Analysis", "Power BI"],
+    technologies: ["Python", "Machine Learning", "Time Series", "ETL", "Power BI"],
     logo: "/images/aspire-logo.png"
-  },
-  {
-    id: "argonne",
-    company: "Argonne National Laboratory",
-    role: "Capstone Researcher",
-    period: "01/2024 – 05/2024",
-    duration: "5 months",
-    location: "Chicago, IL",
-    description: "Conducted research on computer vision applications for autonomous vehicle systems, focusing on monocular depth estimation and object detection.",
-    highlights: [
-      "Implemented monocular vehicle distance estimation using deep learning",
-      "Achieved 92% accuracy in vehicle detection and distance prediction",
-      "Published research findings in computer vision applications"
-    ],
-    technologies: ["Computer Vision", "Deep Learning", "Python", "OpenCV", "PyTorch"],
-    logo: "/images/argonne_national_laboratory.png"
   }
 ]; 
