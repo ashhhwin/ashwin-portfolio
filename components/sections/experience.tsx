@@ -3,6 +3,7 @@
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef, useState } from "react"
+import Image from "next/image"
 import { experience } from "@/data/experience"
 import { Calendar, MapPin, CheckCircle, Briefcase, Building2 } from "lucide-react"
 
@@ -10,10 +11,12 @@ import { Calendar, MapPin, CheckCircle, Briefcase, Building2 } from "lucide-reac
 const topics = [
   { title: "AI/ML", keywords: ["AI/ML", "Machine Learning", "GenAI", "Deep Learning", "NLP", "Forecasting", "Bayesian Statistics", "XGBoost", "Transformers", "Scikit-learn", "TensorFlow"] },
   { title: "Data Engineering", keywords: ["ETL", "Apache Spark", "Real-time Processing", "Data Pipelines"] },
-  { title: "NLP", keywords: ["NLP", "Transformers", "Conversational AI"] },
-  { title: "Computer Vision", keywords: ["Computer Vision", "OpenCV", "YOLOv5", "Autonomous Vehicles"] },
-  { title: "Time Series", keywords: ["Time Series", "Forecasting", "Anomaly Detection"] },
-  { title: "Cloud & DevOps", keywords: ["AWS", "CI/CD", "Docker"] }
+  { title: "NLP", keywords: ["NLP", "Transformers", "Conversational AI", "Sentiment Analysis"] },
+  { title: "Computer Vision", keywords: ["Computer Vision", "OpenCV", "YOLO", "Deep Learning"] },
+  { title: "Healthcare AI", keywords: ["Healthcare", "Clinical Trials", "Medical AI", "ROI Modeling"] },
+  { title: "Finance & Trading", keywords: ["Finance", "Trading", "Capital Markets", "Backtesting", "Option Flow"] },
+  { title: "Retail & Consumer", keywords: ["Retail", "Consumer Intelligence", "Customer Segmentation", "Demand Forecasting"] },
+  { title: "Real-time Systems", keywords: ["Real-time", "Streaming", "Monitoring", "Anomaly Detection"] }
 ];
 
 interface ExperienceProps {
@@ -22,13 +25,8 @@ interface ExperienceProps {
 
 const CompanyLogo = ({ logo, company }: { logo?: string; company: string }) => {
   const [imageError, setImageError] = useState(false);
-  const [imageLoaded, setImageLoaded] = useState(false);
-
-  // Debug logging
-  console.log(`CompanyLogo: ${company}, logo path: ${logo}`);
 
   if (!logo || imageError) {
-    console.log(`CompanyLogo: Using fallback for ${company}`);
     return (
       <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center">
         <Building2 className="w-6 h-6 text-primary" />
@@ -42,24 +40,14 @@ const CompanyLogo = ({ logo, company }: { logo?: string; company: string }) => {
       whileHover={{ scale: 1.1, rotate: 5 }}
       transition={{ type: "spring", stiffness: 300 }}
     >
-      {!imageLoaded && (
-        <div className="w-full h-full bg-muted animate-pulse flex items-center justify-center">
-          <Building2 className="w-6 h-6 text-muted-foreground" />
-        </div>
-      )}
-      <img
+      <Image
         src={logo}
         alt={`${company} logo`}
-        className={`w-full h-full object-contain ${imageLoaded ? 'block' : 'hidden'}`}
-        onError={(e) => {
-          console.error(`Failed to load image for ${company}:`, logo, e);
-          setImageError(true);
-        }}
-        onLoad={() => {
-          console.log(`Successfully loaded image for ${company}:`, logo);
-          setImageLoaded(true);
-        }}
-        crossOrigin="anonymous"
+        width={48}
+        height={48}
+        className="w-full h-full object-contain"
+        onError={() => setImageError(true)}
+        unoptimized={true}
       />
     </motion.div>
   );

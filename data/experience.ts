@@ -28,7 +28,7 @@ export const experience: Experience[] = [
     ],
     technologies: ["GCP", "Machine Learning", "Backtesting", "ETL/Data Engineering", "Real-time Streaming"],
     website: "https://evoketechnologies.com",
-    logo: "/logos/evoke_technologies_logo.png"
+    logo: "/images/evoke_technologies_logo.png"
   },
   {
     id: "argonne",
@@ -45,40 +45,38 @@ export const experience: Experience[] = [
     ],
     technologies: ["Computer Vision", "PyTorch", "OpenCV", "Deep Learning", "Autonomous Vehicles", "Research & Development"],
     website: "https://www.anl.gov",
-    logo: "/logos/argonne_national_laboratory.png"
+    logo: "/images/argonne_national_laboratory.png"
   },
   {
     id: "prodapt",
-    company: "Prodapt Solutions",
-    role: "Data Science Intern",
-    period: "03/2024 – 07/2024",
-    duration: "4 months",
+    company: "Prodapt",
+    role: "Data Scientist Intern",
+    period: "01/2025 – 05/2025",
+    duration: "5 months",
     location: "Chennai, India",
-    description: "Developed real-time anomaly detection systems and monitoring dashboards for enterprise clients.",
+    description: "Developed conversational AI solutions and customer segmentation models for enterprise clients.",
     highlights: [
-      "Real-time anomaly detection pipeline processing 36k events/hour with drift monitoring",
-      "ML model performance tracking and automated alerting systems",
-      "Interactive dashboards for enterprise-scale operational intelligence"
+      "Built conversational impact analyzer with 85% accuracy for customer sentiment analysis",
+      "Implemented customer segmentation model improving retention by 23%",
+      "Created automated reporting dashboards reducing manual work by 60%"
     ],
-    technologies: ["Python", "Real-time Processing", "Anomaly Detection", "MLOps", "Monitoring & Alerting", "Data Engineering"],
-    website: "https://prodapt.com",
-    logo: "/logos/Prodapt-logo.png"
+    technologies: ["Python", "Machine Learning", "NLP", "SQL", "Tableau"],
+    logo: "/images/Prodapt-logo.png"
   },
   {
     id: "aspire",
     company: "Aspire Systems",
-    role: "Data Scientist Intern",
-    period: "06/2022 – 09/2022",
+    role: "Data Science Intern",
+    period: "05/2024 – 08/2024",
     duration: "4 months",
     location: "Chennai, India",
-    description: "Implemented computer vision solutions for retail analytics using YOLOv5 for shelf monitoring.",
+    description: "Developed healthcare AI models and demand forecasting solutions for retail clients.",
     highlights: [
-      "YOLOv5-based shelf void detection with real-time alerting systems",
-      "Computer vision pipeline for retail inventory optimization",
-      "15% improvement in product availability through automated monitoring"
+      "Built healthcare outreach ROI model with 92% prediction accuracy",
+      "Developed event-driven demand shock forecaster for retail optimization",
+      "Created automated data pipelines processing 10M+ records daily"
     ],
-    technologies: ["Computer Vision", "YOLOv5", "Python", "Retail Analytics", "Real-time Alerting", "Deep Learning"],
-    website: "https://aspiresys.com",
-    logo: "/logos/aspire-logo.png"
+    technologies: ["Python", "Machine Learning", "Time Series", "ETL", "Power BI"],
+    logo: "/images/aspire-logo.png"
   }
 ]; 
