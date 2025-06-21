@@ -28,7 +28,7 @@ export const experience: Experience[] = [
     ],
     technologies: ["GCP", "Machine Learning", "Backtesting", "ETL/Data Engineering", "Real-time Streaming"],
     website: "https://evoketechnologies.com",
-    logo: "/logos/evoke_technologies_logo.jpeg"
+    logo: "/logos/evoke_technologies_logo.png"
   },
   {
     id: "argonne",
@@ -45,7 +45,7 @@ export const experience: Experience[] = [
     ],
     technologies: ["Computer Vision", "PyTorch", "OpenCV", "Deep Learning", "Autonomous Vehicles", "Research & Development"],
     website: "https://www.anl.gov",
-    logo: "/logos/argonne_national_laboratory.jpg"
+    logo: "/logos/argonne_national_laboratory.png"
   },
   {
     id: "prodapt",
@@ -62,7 +62,7 @@ export const experience: Experience[] = [
     ],
     technologies: ["Python", "Real-time Processing", "Anomaly Detection", "MLOps", "Monitoring & Alerting", "Data Engineering"],
     website: "https://prodapt.com",
-    logo: "/logos/Prodapt-logo.jpeg"
+    logo: "/logos/Prodapt-logo.png"
   },
   {
     id: "aspire",

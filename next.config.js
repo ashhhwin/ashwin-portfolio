@@ -12,6 +12,10 @@ const nextConfig = {
         hostname: 'github.com',
       },
     ],
+    unoptimized: true, // Disable image optimization for static assets
+  },
+  experimental: {
+    optimizePackageImports: ['lucide-react'],
   },
   async headers() {
     return [
@@ -29,6 +33,15 @@ const nextConfig = {
           {
             key: 'Referrer-Policy',
             value: 'origin-when-cross-origin',
+          },
+        ],
+      },
+      {
+        source: '/logos/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
           },
         ],
       },

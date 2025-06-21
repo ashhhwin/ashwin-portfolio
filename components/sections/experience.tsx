@@ -3,7 +3,6 @@
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef, useState } from "react"
-import Image from "next/image"
 import { experience } from "@/data/experience"
 import { Calendar, MapPin, CheckCircle, Briefcase, Building2 } from "lucide-react"
 
@@ -25,7 +24,11 @@ const CompanyLogo = ({ logo, company }: { logo?: string; company: string }) => {
   const [imageError, setImageError] = useState(false);
   const [imageLoaded, setImageLoaded] = useState(false);
 
+  // Debug logging
+  console.log(`CompanyLogo: ${company}, logo path: ${logo}`);
+
   if (!logo || imageError) {
+    console.log(`CompanyLogo: Using fallback for ${company}`);
     return (
       <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center">
         <Building2 className="w-6 h-6 text-primary" />
@@ -44,22 +47,19 @@ const CompanyLogo = ({ logo, company }: { logo?: string; company: string }) => {
           <Building2 className="w-6 h-6 text-muted-foreground" />
         </div>
       )}
-      <Image
+      <img
         src={logo}
         alt={`${company} logo`}
-        width={48}
-        height={48}
-        className={`object-contain ${imageLoaded ? 'block' : 'hidden'}`}
-        onError={() => {
-          console.error(`Failed to load image: ${logo}`);
+        className={`w-full h-full object-contain ${imageLoaded ? 'block' : 'hidden'}`}
+        onError={(e) => {
+          console.error(`Failed to load image for ${company}:`, logo, e);
           setImageError(true);
         }}
         onLoad={() => {
-          console.log(`Successfully loaded image: ${logo}`);
+          console.log(`Successfully loaded image for ${company}:`, logo);
           setImageLoaded(true);
         }}
-        priority={false}
-        unoptimized={true} // Disable optimization for external logos to avoid issues
+        crossOrigin="anonymous"
       />
     </motion.div>
   );
