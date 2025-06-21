@@ -8,26 +8,7 @@ import { random, range } from "@/lib/utils"
 import { useRandomInterval } from "@/lib/hooks"
 import { projects } from "@/data/projects"
 import { experience } from "@/data/experience"
-
-const topics = [
-  { title: "Machine Learning & Forecasting", keywords: ["Machine Learning", "Forecasting", "Time Series", "Predictive Modeling", "XGBoost", "TensorFlow", "Scikit-learn", "AI/ML"] },
-  { title: "Finance & Signal Modeling", keywords: ["Finance", "Signal Processing", "Quantitative Analysis", "Algorithmic Trading", "Risk Management"] },
-  { title: "Healthcare & Clinical AI", keywords: ["Healthcare", "Clinical AI", "Medical Imaging", "Genomics", "Predictive Diagnostics", "SHAP", "Cox Proportional Hazards"] },
-  { title: "Retail & Consumer Intelligence", keywords: ["Retail", "Consumer Behavior", "Recommendation Engines", "Customer Segmentation", "Market Basket Analysis"] },
-  { title: "NLP & Engagement AI", keywords: ["NLP", "Transformers", "Conversational AI", "Chatbots", "Sentiment Analysis"] },
-  { title: "Computer Vision Systems", keywords: ["Computer Vision", "OpenCV", "YOLO", "Image Recognition", "Object Detection", "Autonomous Vehicles"] },
-  { title: "Real-Time AI & Ops Monitoring", keywords: ["Real-Time AI", "Anomaly Detection", "Streaming Data", "Kafka", "Apache Spark", "CI/CD", "Docker", "Real-time Processing"] },
-].map(topic => {
-  const projectCount = projects.filter(p => 
-    p.technologies.some(tech => topic.keywords.includes(tech)) || topic.keywords.includes(p.category)
-  ).length;
-
-  const experienceCount = experience.filter(e =>
-    e.technologies.some(tech => topic.keywords.includes(tech))
-  ).length;
-
-  return { ...topic, projectCount, experienceCount };
-});
+import { topics } from "@/data/topics"
 
 const generateSparkle = (title: string) => {
   return {
@@ -225,6 +206,18 @@ const SkillPlexus = ({ setSelectedExpertise }: { setSelectedExpertise: (expertis
           </div>
         );
       })}
+      
+      {/* Subtle instruction line */}
+      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
+        <motion.p 
+          className="text-sm text-primary/50 font-medium tracking-wide"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 2 }}
+        >
+          hover to explore expertise
+        </motion.p>
+      </div>
     </div>
   );
 };

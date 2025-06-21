@@ -16,7 +16,7 @@ export const projects: Project[] = [
     title: "Agentic YouTube AI",
     description: "Multi-agent GenAI titles & thumbnails with Bayesian A/B testing for content optimization and engagement prediction.",
     category: "AI/ML",
-    technologies: ["Python", "GenAI", "Bayesian Statistics", "A/B Testing", "Multi-agent Systems"],
+    technologies: ["GenAI", "Bayesian Statistics", "A/B Testing", "Multi-agent Systems"],
     highlights: [
       "Built multi-agent system for content optimization",
       "Implemented Bayesian A/B testing framework",
@@ -29,7 +29,7 @@ export const projects: Project[] = [
     title: "Clinical Trial Risk Intelligence",
     description: "XGBoost + Cox PH attrition prediction with SHAP analysis for clinical trial participant retention optimization.",
     category: "Healthcare AI",
-    technologies: ["Python", "XGBoost", "Cox Proportional Hazards", "SHAP", "Healthcare"],
+    technologies: ["XGBoost", "Cox Proportional Hazards", "SHAP", "Healthcare"],
     highlights: [
       "Developed attrition prediction model with 85% accuracy",
       "Implemented SHAP analysis for interpretability",
@@ -42,7 +42,7 @@ export const projects: Project[] = [
     title: "Event-Driven Demand Shock Forecaster",
     description: "Flu/weather SKU demand spike prediction using event-driven architecture and time series forecasting.",
     category: "Time Series",
-    technologies: ["Python", "Time Series", "Event-Driven", "Forecasting", "Real-time"],
+    technologies: ["Time Series", "Event-Driven", "Forecasting", "Real-time"],
     highlights: [
       "Built real-time demand forecasting system",
       "Integrated weather and flu data for predictions",
@@ -55,7 +55,7 @@ export const projects: Project[] = [
     title: "Conversational Impact Analyzer",
     description: "Transformer NLP + causal uplift analysis on customer service chats for impact measurement and optimization.",
     category: "NLP",
-    technologies: ["Python", "Transformers", "NLP", "Causal Inference", "Customer Analytics"],
+    technologies: ["Transformers", "NLP", "Causal Inference", "Customer Analytics"],
     highlights: [
       "Implemented transformer-based sentiment analysis",
       "Applied causal inference for impact measurement",
@@ -68,7 +68,7 @@ export const projects: Project[] = [
     title: "Customer Segmentation & Retention Insights Platform",
     description: "Advanced customer segmentation and retention prediction using machine learning and behavioral analytics.",
     category: "Data Science",
-    technologies: ["Python", "Machine Learning", "Customer Analytics", "Segmentation", "Retention"],
+    technologies: ["Machine Learning", "Customer Analytics", "Segmentation", "Retention"],
     highlights: [
       "Developed customer segmentation models",
       "Built retention prediction algorithms",
@@ -80,7 +80,7 @@ export const projects: Project[] = [
     title: "Healthcare Outreach ROI Model",
     description: "Causal inference model for healthcare outreach effectiveness and patient engagement optimization.",
     category: "Healthcare AI",
-    technologies: ["Python", "Causal Inference", "Healthcare", "ROI Analysis", "Patient Engagement"],
+    technologies: ["Causal Inference", "Healthcare", "ROI Analysis", "Patient Engagement"],
     highlights: [
       "Applied causal inference for outreach effectiveness",
       "Optimized patient engagement strategies",
@@ -92,7 +92,7 @@ export const projects: Project[] = [
     title: "Argonne National Lab Capstone – Monocular Vehicle Distance Estimation",
     description: "Computer vision system for monocular depth estimation in autonomous vehicle applications.",
     category: "Computer Vision",
-    technologies: ["Python", "Computer Vision", "Monocular Vision", "Deep Learning", "Autonomous Vehicles"],
+    technologies: ["Computer Vision", "Monocular Vision", "Deep Learning"],
     highlights: [
       "Developed monocular depth estimation model",
       "Applied computer vision for autonomous systems",
@@ -104,7 +104,7 @@ export const projects: Project[] = [
     title: "Bayesian Deep Learning for Diabetic Retinopathy",
     description: "Bayesian CNN to classify retinal images with uncertainty-aware predictions. The model uses Monte Carlo Dropout to generate multiple predictions per image, allowing for uncertainty estimation.",
     category: "Healthcare AI",
-    technologies: ["PyTorch", "Blitz", "GANs", "Diffusion", "MCDropout", "Bayesian Deep Learning"],
+    technologies: ["CNN", "Blitz", "GANs", "MCDropout", "Bayesian Deep Learning"],
     highlights: [
       "Implemented Bayesian CNN with uncertainty quantification",
       "Applied Monte Carlo Dropout for robust predictions",
