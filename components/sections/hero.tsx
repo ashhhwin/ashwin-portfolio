@@ -62,12 +62,12 @@ const SkillPlexus = ({ setSelectedExpertise }: { setSelectedExpertise: (expertis
   const [positions, setPositions] = useState(() => {
     const seed = 12345;
     return topics.map((_, i) => {
-      const x = 20 + ((seed + i * 7) % 60);
-      const y = 20 + ((seed + i * 11) % 60);
+      const x = 25 + ((seed + i * 7) % 50); // Reduced range to prevent edge clipping
+      const y = 25 + ((seed + i * 11) % 50); // Reduced range to prevent edge clipping
       return {
         x, y,
-        vx: ((seed + i * 13) % 10 - 5) * 0.08, // Increased speed to restore animation
-        vy: ((seed + i * 17) % 10 - 5) * 0.08, // Increased speed to restore animation
+        vx: ((seed + i * 13) % 6 - 3) * 0.05, // Reduced velocity range and speed
+        vy: ((seed + i * 17) % 6 - 3) * 0.05, // Reduced velocity range and speed
       };
     });
   });
@@ -84,18 +84,32 @@ const SkillPlexus = ({ setSelectedExpertise }: { setSelectedExpertise: (expertis
           let newVx = pos.vx;
           let newVy = pos.vy;
 
-          // Add a gentle gravitational pull towards the vertical center (50%)
-          const verticalCenter = 50;
-          const centeringStrength = 0.0001; // Reduced for a much subtler pull
-          newVy += (verticalCenter - pos.y) * centeringStrength;
+          // Add a gentle gravitational pull towards the center (50%)
+          const centerX = 50;
+          const centerY = 50;
+          const centeringStrength = 0.0005; // Reduced for more stable movement
+          newVx += (centerX - pos.x) * centeringStrength;
+          newVy += (centerY - pos.y) * centeringStrength;
 
-          if (newX < 20 || newX > 80) { newVx = -newVx; newX = newX < 20 ? 20 : 80; } // Increased horizontal margin
-          if (newY < 10 || newY > 90) { newVy = -newVy; newY = newY < 10 ? 10 : 90; } // Increased top margin
+          // Clamp velocities to prevent runaway speeds
+          const maxVelocity = 0.3;
+          newVx = Math.max(-maxVelocity, Math.min(maxVelocity, newVx));
+          newVy = Math.max(-maxVelocity, Math.min(maxVelocity, newVy));
+
+          // Bounce off boundaries with more conservative margins
+          if (newX < 15 || newX > 85) { 
+            newVx = -newVx * 0.8; // Add damping to prevent oscillation
+            newX = newX < 15 ? 15 : 85; 
+          }
+          if (newY < 15 || newY > 85) { 
+            newVy = -newVy * 0.8; // Add damping to prevent oscillation
+            newY = newY < 15 ? 15 : 85; 
+          }
 
           return { ...pos, x: newX, y: newY, vx: newVx, vy: newVy };
         });
 
-        // Add repulsion logic to prevent node overlap
+        // Add repulsion logic to prevent node overlap with improved stability
         for (let i = 0; i < newPositions.length; i++) {
           for (let j = i + 1; j < newPositions.length; j++) {
             const node1 = newPositions[i];
@@ -103,14 +117,14 @@ const SkillPlexus = ({ setSelectedExpertise }: { setSelectedExpertise: (expertis
             const dx = node2.x - node1.x;
             const dy = node2.y - node1.y;
             const distance = Math.sqrt(dx * dx + dy * dy);
-            const minDistance = 40; // Increased repulsion distance
+            const minDistance = 35; // Slightly reduced repulsion distance
 
-            if (distance < minDistance) {
+            if (distance < minDistance && distance > 0) {
               const overlap = minDistance - distance;
               const angle = Math.atan2(dy, dx);
               
-              const moveX = Math.cos(angle) * overlap / 2;
-              const moveY = Math.sin(angle) * overlap / 2;
+              const moveX = Math.cos(angle) * overlap / 3; // Reduced movement strength
+              const moveY = Math.sin(angle) * overlap / 3; // Reduced movement strength
 
               newPositions[i].x -= moveX;
               newPositions[i].y -= moveY;
@@ -122,7 +136,7 @@ const SkillPlexus = ({ setSelectedExpertise }: { setSelectedExpertise: (expertis
         
         return newPositions;
       });
-    }, 70);
+    }, 100); // Increased interval for more stable animation
     return () => clearInterval(interval);
   }, [mounted]);
 
@@ -175,13 +189,18 @@ const SkillPlexus = ({ setSelectedExpertise }: { setSelectedExpertise: (expertis
           <div
             key={topic.title}
             className="absolute transform -translate-x-1/2 -translate-y-1/2 cursor-pointer transition-all duration-300 hover:scale-125 hover:z-10"
-            style={{ left: `${pos.x}%`, top: `${pos.y}%` }}
+            style={{ 
+              left: `${pos.x}%`, 
+              top: `${pos.y}%`,
+              maxWidth: '200px', // Prevent text from getting too wide
+              minWidth: '120px'  // Ensure minimum width for readability
+            }}
             onClick={() => handleTopicClick(topic.title)}
             onMouseEnter={() => setHoveredTopic(topic.title)}
             onMouseLeave={() => setHoveredTopic(null)}
           >
             <div className="text-center">
-              <div className="text-base font-medium text-foreground/80 hover:text-primary transition-colors duration-300 px-3 py-1">
+              <div className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors duration-300 px-2 py-1 break-words">
                 {topic.title}
               </div>
               {isHovered && (
@@ -189,7 +208,8 @@ const SkillPlexus = ({ setSelectedExpertise }: { setSelectedExpertise: (expertis
                   initial={{ opacity: 0, y: -5, scale: 0.95 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: -5, scale: 0.95 }}
-                  className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 flex items-center gap-3 bg-background/90 backdrop-blur-sm border border-primary/20 rounded-lg px-3 py-2 shadow-lg"
+                  className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 flex items-center gap-3 bg-background/90 backdrop-blur-sm border border-primary/20 rounded-lg px-3 py-2 shadow-lg z-20"
+                  style={{ minWidth: 'max-content' }} // Ensure tooltip doesn't get clipped
                 >
                   <div className="flex items-center gap-1.5 text-xs">
                     <Building2 className="h-3 w-3 text-blue-500" />
@@ -273,19 +293,22 @@ export function Hero({ setSelectedExpertise }: { setSelectedExpertise: (expertis
             </motion.h1>
             
             <motion.div 
-              className="space-y-4 mb-8"
+              className="space-y-4 mb-8 text-center lg:text-left"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-center lg:justify-start gap-3 text-lg text-muted-foreground">
+              <p className="flex flex-wrap items-baseline justify-center lg:justify-start gap-x-2 text-lg text-muted-foreground">
                 <GlowText text="Building depth estimation for ADAS" />
-                <span className="hidden sm:inline text-muted-foreground/50">@</span>
-                <span className="text-primary font-medium">Argonne National Laboratory</span>
-              </div>
+                <span className="text-primary font-medium inline-flex items-baseline gap-2">
+                  <span className="text-muted-foreground/50">@</span>
+                  <span>Argonne National Laboratory</span>
+                </span>
+              </p>
               
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-center lg:justify-start gap-2 text-lg text-muted-foreground/80">
-                <span className="font-medium">Certified in Data Science &amp; AI Engineering by{' '}
+              <p className="flex flex-wrap items-baseline justify-center lg:justify-start gap-x-2 text-lg text-muted-foreground/80">
+                <span className="font-medium">Certified in Data Science &amp; AI Engineering by</span>
+                <span className="inline-flex items-baseline gap-2">
                   <span className="font-semibold">
                     <span style={{ color: '#4285F4' }}>G</span>
                     <span style={{ color: '#EA4335' }}>o</span>
@@ -294,15 +317,15 @@ export function Hero({ setSelectedExpertise }: { setSelectedExpertise: (expertis
                     <span style={{ color: '#34A853' }}>l</span>
                     <span style={{ color: '#EA4335' }}>e</span>
                   </span>
+                  <span className="font-light text-muted-foreground/80">&amp;</span>
+                  <span className="font-semibold" style={{ color: '#006699' }}>IBM</span>
                 </span>
-                <span className="font-light text-muted-foreground/80">&amp;</span>
-                <span className="font-semibold" style={{ color: '#006699' }}>IBM</span>
-              </div>
+              </p>
               
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-center lg:justify-start gap-2 text-lg text-muted-foreground/80">
+              <p className="flex flex-wrap items-baseline justify-center lg:justify-start gap-x-2 text-lg text-muted-foreground/80">
                 <span className="font-medium">MS in Applied Data Science at</span>
                 <span className="font-semibold" style={{ color: '#800000' }}>University of Chicago</span>
-              </div>
+              </p>
             </motion.div>
           </motion.div>
 
