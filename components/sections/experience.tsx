@@ -2,9 +2,10 @@
 
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
-import { useRef } from "react"
+import { useRef, useState } from "react"
+import Image from "next/image"
 import { experience } from "@/data/experience"
-import { Calendar, MapPin, CheckCircle, Briefcase } from "lucide-react"
+import { Calendar, MapPin, CheckCircle, Briefcase, Building2 } from "lucide-react"
 
 // This needs to be kept in sync with the topics in hero.tsx
 const topics = [
@@ -19,6 +20,50 @@ const topics = [
 interface ExperienceProps {
   selectedExpertise: string | null;
 }
+
+const CompanyLogo = ({ logo, company }: { logo?: string; company: string }) => {
+  const [imageError, setImageError] = useState(false);
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  if (!logo || imageError) {
+    return (
+      <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center">
+        <Building2 className="w-6 h-6 text-primary" />
+      </div>
+    );
+  }
+
+  return (
+    <motion.div 
+      className="w-12 h-12 rounded-lg bg-background border border-border flex items-center justify-center overflow-hidden"
+      whileHover={{ scale: 1.1, rotate: 5 }}
+      transition={{ type: "spring", stiffness: 300 }}
+    >
+      {!imageLoaded && (
+        <div className="w-full h-full bg-muted animate-pulse flex items-center justify-center">
+          <Building2 className="w-6 h-6 text-muted-foreground" />
+        </div>
+      )}
+      <Image
+        src={logo}
+        alt={`${company} logo`}
+        width={48}
+        height={48}
+        className={`object-contain ${imageLoaded ? 'block' : 'hidden'}`}
+        onError={() => {
+          console.error(`Failed to load image: ${logo}`);
+          setImageError(true);
+        }}
+        onLoad={() => {
+          console.log(`Successfully loaded image: ${logo}`);
+          setImageLoaded(true);
+        }}
+        priority={false}
+        unoptimized={true} // Disable optimization for external logos to avoid issues
+      />
+    </motion.div>
+  );
+};
 
 export function Experience({ selectedExpertise }: ExperienceProps) {
   const ref = useRef(null)
@@ -121,26 +166,7 @@ export function Experience({ selectedExpertise }: ExperienceProps) {
                   <div className={`w-full pl-12 md:pl-0 ${index % 2 === 0 ? 'md:pr-16 md:text-right' : 'md:pl-16'}`}>
                     <div className={`md:w-1/2 ${index % 2 === 0 ? 'md:float-left' : 'md:float-right'}`}>
                       <div className={`flex items-center gap-3 mb-3 ${index % 2 === 0 ? 'md:justify-end' : 'md:justify-start'}`}>
-                        {job.logo && (
-                          <motion.div 
-                            className="w-12 h-12 rounded-lg bg-background border border-border flex items-center justify-center overflow-hidden"
-                            whileHover={{ scale: 1.1, rotate: 5 }}
-                            transition={{ type: "spring", stiffness: 300 }}
-                          >
-                            <img
-                              src={job.logo}
-                              alt={`${job.company} logo`}
-                              className="object-contain w-full h-full"
-                              onError={(e) => {
-                                console.error(`Failed to load image: ${job.logo}`);
-                                e.currentTarget.style.display = 'none';
-                              }}
-                              onLoad={() => {
-                                console.log(`Successfully loaded image: ${job.logo}`);
-                              }}
-                            />
-                          </motion.div>
-                        )}
+                        <CompanyLogo logo={job.logo} company={job.company} />
                         <div>
                           <h3 className="text-xl font-semibold text-primary leading-tight">{job.role}</h3>
                           <div className="flex items-center gap-2">
