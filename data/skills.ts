@@ -13,5 +13,17 @@ export const skills = {
   optimization: [
     "A/B Testing", "Sensitivity Analysis", "Linear Optimization",
     "Monte Carlo Simulation"
+  ],
+  aiMl: [
+    "Deep Learning", "Computer Vision", "NLP", "Machine Learning",
+    "Bayesian Statistics", "GANs", "Transformers"
+  ],
+  healthcare: [
+    "Healthcare Analytics", "Clinical Trials", "Medical Imaging",
+    "Diabetic Retinopathy", "Causal Inference"
+  ],
+  timeSeries: [
+    "Time Series", "Forecasting", "Event-Driven", "Real-time",
+    "Demand Prediction"
   ]
 }; 

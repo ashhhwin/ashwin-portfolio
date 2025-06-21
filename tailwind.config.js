@@ -83,6 +83,7 @@ module.exports = {
       fontFamily: {
         mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
         sans: ['Inter', 'system-ui', 'sans-serif'],
+        heading: ['Poppins', 'system-ui', 'sans-serif'],
       },
     },
   },

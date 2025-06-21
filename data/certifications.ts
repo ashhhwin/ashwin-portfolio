@@ -11,12 +11,14 @@ export const certifications: Certification[] = [
     name: "Google Advanced Data Analytics",
     issuer: "Google",
     year: "2024",
+    logo: "/google-logo.svg",
     url: "https://www.coursera.org/account/accomplishments/certificate/example"
   },
   {
     name: "IBM AI Engineering",
     issuer: "IBM",
     year: "2024",
+    logo: "/ibm-logo.svg",
     url: "https://www.coursera.org/account/accomplishments/certificate/example"
   },
   {

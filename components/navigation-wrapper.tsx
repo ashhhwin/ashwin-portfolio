@@ -1,27 +1,19 @@
 "use client"
 
 import React from 'react'
-import { Navigation } from './navigation'
-import Home from '@/app/page'
 
-export function NavigationWrapper() {
-  const handleShowEducation = () => {
-    // Use requestAnimationFrame for smoother scrolling
-    requestAnimationFrame(() => {
-      const educationSection = document.getElementById('education')
-      if (educationSection) {
-        educationSection.scrollIntoView({ 
-          behavior: 'smooth',
-          block: 'start'
-        })
-      }
-    })
-  }
-
+export function NavigationWrapper({ 
+  onShowEducation,
+  children 
+}: { 
+  onShowEducation: () => void,
+  children: React.ReactNode 
+}) {
+  // The wrapper's purpose is primarily for positioning and state context if needed.
+  // The actual navigation component is passed as a child.
   return (
     <>
-      <Navigation onShowEducation={handleShowEducation} />
-      <Home />
+      {React.cloneElement(children as React.ReactElement, { onShowEducation })}
     </>
   )
 } 

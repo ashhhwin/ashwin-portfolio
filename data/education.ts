@@ -4,6 +4,7 @@ export interface Education {
   period: string;
   gpa: string;
   location: string;
+  logo?: string;
 }
 
 export const education: Education[] = [
@@ -12,7 +13,8 @@ export const education: Education[] = [
     institution: "University of Chicago",
     period: "Aug 2024 – Dec 2025",
     gpa: "3.90/4.00",
-    location: "Chicago, IL"
+    location: "Chicago, IL",
+    logo: "/uchicago-logo.svg"
   },
   {
     degree: "B.Tech Computer Science & Engineering (AI/ML)",

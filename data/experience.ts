@@ -4,6 +4,7 @@ export interface Experience {
   role: string;
   period: string;
   duration: string;
+  location: string;
   description: string;
   highlights: string[];
   technologies: string[];
@@ -17,14 +18,15 @@ export const experience: Experience[] = [
     company: "Evoke Technologies",
     role: "Data Science Intern (Capital Markets)",
     period: "06/2025 – Present",
-    duration: "6 months",
+    duration: "3 months",
+    location: "Dayton, OH",
     description: "Building scalable data pipelines and ML models for capital markets, focusing on real-time stock analysis and option flow signals.",
     highlights: [
-      "Scalable ETL for 9,000+ stocks & ETFs",
-      "NLP sentiment fusion",
-      "Option-flow signal models"
+      "Enterprise ETL pipelines for 9,000+ global equities with financial ontology frameworks",
+      "NLP sentiment extraction from premium publications for alpha signal enhancement",
+      "Option flow analytics and directional signal detection for portfolio optimization"
     ],
-    technologies: ["Python", "AWS", "Apache Spark", "NLP", "Machine Learning", "ETL", "Real-time Processing"],
+    technologies: ["GCP", "Machine Learning", "Backtesting", "ETL/Data Engineering", "Real-time Streaming"],
     website: "https://evoketechnologies.com",
     logo: "/logos/evoke_technologies_logo.jpeg"
   },
@@ -33,15 +35,17 @@ export const experience: Experience[] = [
     company: "Argonne National Laboratory",
     role: "Capstone Researcher",
     period: "04/2025 – Present",
-    duration: "8 months",
+    duration: "9 months",
+    location: "Chicago, IL",
     description: "Researching computer vision solutions for connected autonomous vehicles, focusing on safety and energy efficiency.",
     highlights: [
-      "Monocular vision CAV distance estimation with <10% error",
-      "Safety/energy focus"
+      "Monocular depth estimation for autonomous vehicles with sub-10% error rates",
+      "Computer vision algorithms for safety-critical ADAS applications",
+      "Research contributions to energy-efficient autonomous navigation systems"
     ],
-    technologies: ["Computer Vision", "Python", "OpenCV", "Deep Learning", "Autonomous Vehicles", "Research"],
+    technologies: ["Computer Vision", "PyTorch", "OpenCV", "Deep Learning", "Autonomous Vehicles", "Research & Development"],
     website: "https://www.anl.gov",
-    logo: "/logos/argonne-logo.png"
+    logo: "/logos/argonne_national_laboratory.jpg"
   },
   {
     id: "prodapt",
@@ -49,27 +53,29 @@ export const experience: Experience[] = [
     role: "Data Science Intern",
     period: "03/2024 – 07/2024",
     duration: "4 months",
+    location: "Chennai, India",
     description: "Developed real-time anomaly detection systems and monitoring dashboards for enterprise clients.",
     highlights: [
-      "Real-time anomaly pipeline (36k events/hr)",
-      "Drift monitoring",
-      "Dashboard development"
+      "Real-time anomaly detection pipeline processing 36k events/hour with drift monitoring",
+      "ML model performance tracking and automated alerting systems",
+      "Interactive dashboards for enterprise-scale operational intelligence"
     ],
-    technologies: ["Python", "Real-time Processing", "Anomaly Detection", "Dashboard", "Monitoring", "ETL"],
+    technologies: ["Python", "Real-time Processing", "Anomaly Detection", "MLOps", "Monitoring & Alerting", "Data Engineering"],
     website: "https://prodapt.com",
-    logo: "/logos/Prodapt-logo-scaled.jpg"
+    logo: "/logos/Prodapt-logo.jpeg"
   },
   {
     id: "aspire",
     company: "Aspire Systems",
     role: "Data Scientist Intern",
     period: "06/2022 – 09/2022",
-    duration: "3 months",
+    duration: "4 months",
+    location: "Chennai, India",
     description: "Implemented computer vision solutions for retail analytics using YOLOv5 for shelf monitoring.",
     highlights: [
-      "YOLOv5 shelf-void detection",
-      "Real-time alerting",
-      "15% availability boost"
+      "YOLOv5-based shelf void detection with real-time alerting systems",
+      "Computer vision pipeline for retail inventory optimization",
+      "15% improvement in product availability through automated monitoring"
     ],
     technologies: ["Computer Vision", "YOLOv5", "Python", "Retail Analytics", "Real-time Alerting", "Deep Learning"],
     website: "https://aspiresys.com",

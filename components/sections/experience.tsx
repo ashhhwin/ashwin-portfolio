@@ -122,7 +122,11 @@ export function Experience({ selectedExpertise }: ExperienceProps) {
                     <div className={`md:w-1/2 ${index % 2 === 0 ? 'md:float-left' : 'md:float-right'}`}>
                       <div className={`flex items-center gap-3 mb-3 ${index % 2 === 0 ? 'md:justify-end' : 'md:justify-start'}`}>
                         {job.logo && (
-                          <div className="w-12 h-12 rounded-lg bg-background border border-border flex items-center justify-center overflow-hidden">
+                          <motion.div 
+                            className="w-12 h-12 rounded-lg bg-background border border-border flex items-center justify-center overflow-hidden"
+                            whileHover={{ scale: 1.1, rotate: 5 }}
+                            transition={{ type: "spring", stiffness: 300 }}
+                          >
                             <img
                               src={job.logo}
                               alt={`${job.company} logo`}
@@ -135,10 +139,10 @@ export function Experience({ selectedExpertise }: ExperienceProps) {
                                 console.log(`Successfully loaded image: ${job.logo}`);
                               }}
                             />
-                          </div>
+                          </motion.div>
                         )}
                         <div>
-                          <h3 className="text-2xl font-semibold text-primary">{job.role}</h3>
+                          <h3 className="text-xl font-semibold text-primary leading-tight">{job.role}</h3>
                           <div className="flex items-center gap-2">
                             {job.website ? (
                               <a
@@ -158,7 +162,7 @@ export function Experience({ selectedExpertise }: ExperienceProps) {
                       
                       <div className={`flex items-center gap-4 text-sm text-muted-foreground mb-4 ${index % 2 === 0 ? 'md:justify-end' : 'md:justify-start'}`}>
                           <span className="flex items-center gap-2"><Calendar size={16}/> {job.duration}</span>
-                          <span className="flex items-center gap-2"><MapPin size={16}/> Remote</span>
+                          <span className="flex items-center gap-2"><MapPin size={16}/> {job.location}</span>
                       </div>
                       
                       <ul className="space-y-3 text-left">

@@ -28,7 +28,7 @@ export const projects: Project[] = [
     id: "clinical-trial",
     title: "Clinical Trial Risk Intelligence",
     description: "XGBoost + Cox PH attrition prediction with SHAP analysis for clinical trial participant retention optimization.",
-    category: "Healthcare Analytics",
+    category: "Healthcare AI",
     technologies: ["Python", "XGBoost", "Cox Proportional Hazards", "SHAP", "Healthcare"],
     highlights: [
       "Developed attrition prediction model with 85% accuracy",
@@ -62,5 +62,53 @@ export const projects: Project[] = [
       "Identified 20% improvement opportunities"
     ],
     github: "https://github.com/ashhhwin/conversational-analyzer"
+  },
+  {
+    id: "customer-segmentation",
+    title: "Customer Segmentation & Retention Insights Platform",
+    description: "Advanced customer segmentation and retention prediction using machine learning and behavioral analytics.",
+    category: "Data Science",
+    technologies: ["Python", "Machine Learning", "Customer Analytics", "Segmentation", "Retention"],
+    highlights: [
+      "Developed customer segmentation models",
+      "Built retention prediction algorithms",
+      "Improved customer lifetime value by 35%"
+    ]
+  },
+  {
+    id: "healthcare-outreach",
+    title: "Healthcare Outreach ROI Model",
+    description: "Causal inference model for healthcare outreach effectiveness and patient engagement optimization.",
+    category: "Healthcare AI",
+    technologies: ["Python", "Causal Inference", "Healthcare", "ROI Analysis", "Patient Engagement"],
+    highlights: [
+      "Applied causal inference for outreach effectiveness",
+      "Optimized patient engagement strategies",
+      "Increased outreach ROI by 45%"
+    ]
+  },
+  {
+    id: "argonne-capstone",
+    title: "Argonne National Lab Capstone – Monocular Vehicle Distance Estimation",
+    description: "Computer vision system for monocular depth estimation in autonomous vehicle applications.",
+    category: "Computer Vision",
+    technologies: ["Python", "Computer Vision", "Monocular Vision", "Deep Learning", "Autonomous Vehicles"],
+    highlights: [
+      "Developed monocular depth estimation model",
+      "Applied computer vision for autonomous systems",
+      "Achieved state-of-the-art accuracy in distance estimation"
+    ]
+  },
+  {
+    id: "diabetic-retinopathy",
+    title: "Bayesian Deep Learning for Diabetic Retinopathy",
+    description: "Bayesian CNN to classify retinal images with uncertainty-aware predictions. The model uses Monte Carlo Dropout to generate multiple predictions per image, allowing for uncertainty estimation.",
+    category: "Healthcare AI",
+    technologies: ["PyTorch", "Blitz", "GANs", "Diffusion", "MCDropout", "Bayesian Deep Learning"],
+    highlights: [
+      "Implemented Bayesian CNN with uncertainty quantification",
+      "Applied Monte Carlo Dropout for robust predictions",
+      "Developed uncertainty-aware medical image classification"
+    ]
   }
 ]; 

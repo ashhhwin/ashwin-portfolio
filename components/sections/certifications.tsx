@@ -45,10 +45,11 @@ export function Certifications() {
             {certifications.map((cert, index) => (
               <motion.div
                 key={cert.name}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: index * 0.15, duration: 0.7, ease: "easeOut" }}
-                className={`group p-6 rounded-lg border border-border hover:border-primary/30 hover:bg-primary/5 transition-all duration-300 ${cert.url ? 'cursor-pointer' : ''}`}
+                transition={{ delay: index * 0.1, duration: 0.5, ease: "easeOut" }}
+                whileHover={{ y: -5, boxShadow: "0px 8px 20px hsla(var(--primary), 0.2)" }}
+                className={`group p-6 rounded-xl border border-primary/20 bg-primary/5 ${cert.url ? 'cursor-pointer' : ''}`}
                 onClick={() => cert.url && window.open(cert.url, '_blank', 'noopener,noreferrer')}
               >
                 <div className="flex items-start space-x-4">

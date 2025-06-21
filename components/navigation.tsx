@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { ThemeToggle } from "./theme-toggle"
-import { Menu, X } from "lucide-react"
+import { Menu, X, Download, Eye } from "lucide-react"
 import { Button } from "./ui/button"
 
 const navItems = [
@@ -48,31 +48,61 @@ export function Navigation({ onShowEducation }: NavigationProps) {
     scrollToSection("#education")
   }
 
+  const handleResumeDownload = () => {
+    const link = document.createElement('a');
+    link.href = '/resume.pdf';
+    link.download = 'Ashwin_Ram_Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
+  const handleResumeView = () => {
+    window.open('/resume.pdf', '_blank');
+  }
+
   return (
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-background/80 backdrop-blur-md border-b border-border/50"
+          ? "bg-white/20 dark:bg-black/20 backdrop-blur-sm border-b border-white/10 dark:border-white/10"
           : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            className="flex-shrink-0"
-          >
-            <a href="#home" className="text-xl font-bold gradient-text">
-              AR
-            </a>
-          </motion.div>
+        <div className="flex items-center h-16">
+          {/* Left Side */}
+          <div className="flex-1 flex items-center">
+            <div className="flex items-center space-x-4">
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                className="flex-shrink-0"
+              >
+                <a href="#home" className="text-xl font-bold gradient-text">
+                  AR
+                </a>
+              </motion.div>
+              
+              <div className="hidden sm:flex items-center">
+                <a
+                  href="/resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/20 font-medium text-sm text-primary shadow-sm hover:bg-primary/20 transition-colors duration-200"
+                  style={{ fontSize: '0.95rem' }}
+                >
+                  <Download className="w-4 h-4" />
+                  Resume
+                </a>
+              </div>
+            </div>
+          </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-4">
+          {/* Centered Desktop Navigation */}
+          <div className="flex-1 justify-center hidden md:flex">
+            <div className="flex items-baseline space-x-4">
               {navItems.map((item) => (
                 <motion.button
                   key={item.name}
@@ -91,24 +121,28 @@ export function Navigation({ onShowEducation }: NavigationProps) {
             </div>
           </div>
 
-          {/* Theme Toggle & Mobile Menu Button */}
-          <div className="flex items-center space-x-4">
-            <ThemeToggle />
+          {/* Right Side: Theme Toggle & Mobile Menu */}
+          <div className="flex-1 flex justify-end items-center">
+            <div className="hidden md:block">
+                <ThemeToggle />
+            </div>
             
-            {/* Mobile menu button */}
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden inline-flex items-center justify-center p-2 rounded-md text-foreground hover:text-foreground hover:bg-accent focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary"
-            >
-              <span className="sr-only">Open main menu</span>
-              {isOpen ? (
-                <X className="block h-6 w-6" aria-hidden="true" />
-              ) : (
-                <Menu className="block h-6 w-6" aria-hidden="true" />
-              )}
-            </motion.button>
+            <div className="md:hidden flex items-center space-x-2">
+                <ThemeToggle />
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => setIsOpen(!isOpen)}
+                  className="inline-flex items-center justify-center p-2 rounded-md text-foreground hover:text-foreground hover:bg-accent focus:outline-none focus:ring-2 focus:ring-inset focus:ring-primary"
+                >
+                  <span className="sr-only">Open main menu</span>
+                  {isOpen ? (
+                    <X className="block h-6 w-6" aria-hidden="true" />
+                  ) : (
+                    <Menu className="block h-6 w-6" aria-hidden="true" />
+                  )}
+                </motion.button>
+            </div>
           </div>
         </div>
       </div>
@@ -123,6 +157,20 @@ export function Navigation({ onShowEducation }: NavigationProps) {
             className="md:hidden bg-background/95 backdrop-blur-md border-b border-border/50"
           >
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+              {/* Mobile Resume Button */}
+              <div className="flex px-3 py-2">
+                <a
+                  href="/resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/20 font-medium text-sm text-primary shadow-sm hover:bg-primary/20 transition-colors duration-200 w-full justify-center"
+                  style={{ fontSize: '0.95rem' }}
+                >
+                  <Download className="w-4 h-4" />
+                  Resume
+                </a>
+              </div>
+              
               {navItems.map((item) => (
                 <motion.button
                   key={item.name}

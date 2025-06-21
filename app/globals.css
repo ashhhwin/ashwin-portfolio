@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 @layer base {
   :root {
@@ -91,13 +91,13 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
+  background: -webkit-linear-gradient(left, hsl(var(--primary)), hsl(var(--secondary)));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
 .gradient-bg {
@@ -202,20 +202,22 @@ html {
 }
 
 ::-webkit-scrollbar-track {
-  background: hsl(var(--background));
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: hsl(var(--primary));
-  border-radius: 4px;
+  background: hsl(var(--primary) / 0.5);
+  border-radius: 10px;
+  box-shadow: 0 0 12px hsl(var(--primary) / 0.7);
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(var(--primary) / 0.8);
+  box-shadow: 0 0 20px hsl(var(--primary) / 1);
 }
 
 .card-hover:hover {
-  transform: translateY(-4px);
+  transform: translateY(-5px);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
 }
 
@@ -278,98 +280,62 @@ html {
   .stagger-children.visible > *:nth-child(6) { transition-delay: 0.6s; }
 }
 
-.bg-grid-pattern {
-  background-image: 
-    linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px);
-  background-size: 50px 50px;
-  animation: gridMove 20s linear infinite;
-}
-
 @keyframes gridMove {
-  0% {
-    transform: translate(0, 0);
+  from {
+    background-position: 0 0;
   }
-  100% {
-    transform: translate(50px, 50px);
+  to {
+    background-position: -2rem -2rem;
   }
 }
 
-.floating-shapes {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: -1;
-  overflow: hidden;
-}
-
-.floating-shape {
+.circuit-board {
   position: absolute;
-  opacity: 0.1;
-  animation: float 15s ease-in-out infinite;
+  top: 50%;
+  left: 50%;
+  width: 200vw;
+  height: 200vh;
+  transform: translate(-50%, -50%);
+  background-color: transparent;
 }
 
-.floating-shape:nth-child(1) {
-  top: 10%;
-  left: 10%;
-  width: 60px;
-  height: 60px;
-  background: linear-gradient(45deg, hsl(var(--primary)), hsl(var(--secondary)));
-  border-radius: 50%;
-  animation-delay: 0s;
+.circuit-board::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(hsl(var(--primary) / 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(var(--primary) / 0.05) 1px, transparent 1px);
+  background-size: 4rem 4rem;
+  animation: bg-scroll 20s linear infinite;
+  opacity: 0.5;
 }
 
-.floating-shape:nth-child(2) {
-  top: 60%;
-  right: 15%;
-  width: 40px;
-  height: 40px;
-  background: linear-gradient(45deg, hsl(var(--secondary)), hsl(var(--primary)));
-  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-  animation-delay: 3s;
+.circuit-board::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle, hsl(var(--primary) / 0.15) 2px, transparent 2px),
+    radial-gradient(circle, hsl(var(--secondary) / 0.15) 2px, transparent 2px);
+  background-size: 32rem 32rem, 24rem 24rem;
+  background-position: 0 0, 8rem 8rem;
+  animation: pulse 6s linear infinite;
 }
 
-.floating-shape:nth-child(3) {
-  bottom: 20%;
-  left: 20%;
-  width: 50px;
-  height: 50px;
-  background: linear-gradient(45deg, hsl(var(--primary)), hsl(var(--secondary)));
-  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
-  animation-delay: 6s;
+@keyframes bg-scroll {
+  to {
+    background-position: 4rem 4rem;
+  }
 }
 
-.floating-shape:nth-child(4) {
-  top: 30%;
-  right: 30%;
-  width: 30px;
-  height: 30px;
-  background: linear-gradient(45deg, hsl(var(--secondary)), hsl(var(--primary)));
-  border-radius: 4px;
-  animation-delay: 9s;
-}
-
-.floating-shape:nth-child(5) {
-  top: 70%;
-  left: 60%;
-  width: 45px;
-  height: 45px;
-  background: linear-gradient(45deg, hsl(var(--primary)), hsl(var(--secondary)));
-  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-  animation-delay: 12s;
-}
-
-.floating-shape:nth-child(6) {
-  bottom: 40%;
-  right: 10%;
-  width: 35px;
-  height: 35px;
-  background: linear-gradient(45deg, hsl(var(--secondary)), hsl(var(--primary)));
-  border-radius: 50%;
-  animation-delay: 15s;
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
 }
 
 .sparkle-wrapper {
@@ -409,5 +375,11 @@ html {
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes sparkle {
+  0% {
+    transform: scale(0) rotate(0deg);
   }
 } 

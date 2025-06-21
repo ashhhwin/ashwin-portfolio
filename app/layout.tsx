@@ -1,12 +1,22 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Inter, Poppins } from 'next/font/google'
 import './globals.css'
 import { ThemeProvider } from '@/components/theme-provider'
 import { NavigationWrapper } from '@/components/navigation-wrapper'
+import { NeuralBackground } from '@/components/neural-background'
 import { cn } from '@/lib/utils'
 import { CursorGlow } from '@/components/cursor-glow'
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ 
+  subsets: ['latin'],
+  variable: '--font-inter',
+})
+
+const poppins = Poppins({ 
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700', '800', '900'],
+  variable: '--font-poppins',
+})
 
 export const metadata: Metadata = {
   title: 'Ashwin Ram | Data Scientist & AI Engineer',
@@ -59,7 +69,8 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={cn(
         "min-h-screen font-sans antialiased",
-        inter.className
+        inter.variable,
+        poppins.variable
       )}>
         <ThemeProvider
           attribute="class"
@@ -69,12 +80,14 @@ export default function RootLayout({
         >
           {/* Background color layer */}
           <div className="fixed inset-0 bg-background z-[-3]"></div>
-          {/* Global grid pattern background */}
-          <div className="fixed inset-0 bg-grid-pattern pointer-events-none z-[-2]"></div>
+          {/* Neural background */}
+          <NeuralBackground />
           
           <CursorGlow />
           
-          <NavigationWrapper />
+          <div className="relative flex min-h-screen flex-col">
+            {children}
+          </div>
         </ThemeProvider>
       </body>
     </html>
