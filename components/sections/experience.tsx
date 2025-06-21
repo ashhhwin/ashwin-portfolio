@@ -3,7 +3,6 @@
 import { motion } from "framer-motion"
 import { useInView } from "framer-motion"
 import { useRef, useState } from "react"
-import Image from "next/image"
 import { experience } from "@/data/experience"
 import { Calendar, MapPin, CheckCircle, Briefcase, Building2 } from "lucide-react"
 
@@ -26,7 +25,11 @@ interface ExperienceProps {
 const CompanyLogo = ({ logo, company }: { logo?: string; company: string }) => {
   const [imageError, setImageError] = useState(false);
 
+  // Debug logging
+  console.log(`CompanyLogo: ${company}, logo path: ${logo}`);
+
   if (!logo || imageError) {
+    console.log(`CompanyLogo: Using fallback for ${company}`);
     return (
       <div className="w-12 h-12 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center">
         <Building2 className="w-6 h-6 text-primary" />
@@ -40,14 +43,17 @@ const CompanyLogo = ({ logo, company }: { logo?: string; company: string }) => {
       whileHover={{ scale: 1.1, rotate: 5 }}
       transition={{ type: "spring", stiffness: 300 }}
     >
-      <Image
+      <img
         src={logo}
         alt={`${company} logo`}
-        width={48}
-        height={48}
         className="w-full h-full object-contain"
-        onError={() => setImageError(true)}
-        unoptimized={true}
+        onError={(e) => {
+          console.error(`Failed to load image for ${company}:`, logo, e);
+          setImageError(true);
+        }}
+        onLoad={() => {
+          console.log(`Successfully loaded image for ${company}:`, logo);
+        }}
       />
     </motion.div>
   );
