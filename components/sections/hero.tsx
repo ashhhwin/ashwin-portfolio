@@ -229,14 +229,77 @@ const SkillPlexus = ({ setSelectedExpertise }: { setSelectedExpertise: (expertis
       
       {/* Subtle instruction line */}
       <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
-        <motion.p 
-          className="text-sm text-primary/50 font-medium tracking-wide"
+        <motion.div 
+          className="relative"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 2 }}
+          transition={{ duration: 1, delay: 0.5 }}
         >
-          hover to explore expertise
-        </motion.p>
+          <motion.p 
+            className="text-sm font-medium tracking-wide relative z-10"
+            animate={{ 
+              textShadow: [
+                "0 0 0px rgba(139, 92, 246, 0), 0 0 0px rgba(139, 92, 246, 0)",
+                "0 0 8px rgba(139, 92, 246, 0.6), 0 0 16px rgba(139, 92, 246, 0.4)",
+                "0 0 0px rgba(139, 92, 246, 0), 0 0 0px rgba(139, 92, 246, 0)"
+              ],
+              scale: [1, 1.02, 1],
+              y: [0, -2, 0]
+            }}
+            transition={{ 
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          >
+            <span className="text-primary/70">Filter portfolio by <span className="font-semibold text-primary">Expertise</span></span>
+          </motion.p>
+          {/* Glow effect behind text */}
+          <motion.div 
+            className="absolute inset-0 blur-sm"
+            animate={{ 
+              opacity: [0.3, 0.7, 0.3],
+              scale: [1, 1.05, 1],
+              rotate: [0, 1, 0]
+            }}
+            transition={{ 
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          >
+            <div className="w-full h-full bg-gradient-to-r from-primary/20 via-secondary/20 to-primary/20 rounded-full"></div>
+          </motion.div>
+          {/* Additional floating particles */}
+          <motion.div
+            className="absolute -top-2 -left-2 w-1 h-1 bg-primary/40 rounded-full"
+            animate={{
+              y: [0, -8, 0],
+              opacity: [0.4, 1, 0.4],
+              scale: [1, 1.5, 1]
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 0.5
+            }}
+          />
+          <motion.div
+            className="absolute -top-1 -right-2 w-1 h-1 bg-secondary/40 rounded-full"
+            animate={{
+              y: [0, -6, 0],
+              opacity: [0.4, 1, 0.4],
+              scale: [1, 1.3, 1]
+            }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut",
+              delay: 1
+            }}
+          />
+        </motion.div>
       </div>
     </div>
   );
@@ -277,8 +340,8 @@ export function Hero({ setSelectedExpertise }: { setSelectedExpertise: (expertis
               transition={{ duration: 0.8, delay: 0.1 }}
             >
               {/* LED indicator */}
-              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse shadow-lg shadow-green-400/50"></div>
-              <span className="text-sm text-primary/90 font-medium tracking-wide">
+              <div className="w-2 h-2 rounded-full animate-pulse ring-2 ring-green-200/50" style={{ backgroundColor: '#00FF00', boxShadow: '0 0 10px #00FF00, 0 0 20px #00FF00, 0 0 30px #00FF00' }}></div>
+              <span className="text-sm text-primary font-semibold tracking-wide">
                 Open to opportunities
               </span>
             </motion.div>
