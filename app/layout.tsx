@@ -19,7 +19,7 @@ const poppins = Poppins({
 })
 
 export const metadata: Metadata = {
-  title: 'Ashwin Ram | Data Scientist & AI Engineer',
+  title: 'Ashwin Ram | AI Portfolio',
   description: 'Chicago-based data scientist obsessed with turning messy data into market-moving insight. I build scalable ML & GenAI solutions that ship.',
   keywords: ['data scientist', 'AI engineer', 'machine learning', 'Chicago', 'UChicago', 'portfolio'],
   authors: [{ name: 'Ashwin Ram' }],
@@ -29,13 +29,13 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: 'https://ashwinram.dev',
-    title: 'Ashwin Ram | Data Scientist & AI Engineer',
+    title: 'Ashwin Ram | AI Portfolio',
     description: 'Chicago-based data scientist obsessed with turning messy data into market-moving insight.',
     siteName: 'Ashwin Ram Portfolio',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Ashwin Ram | Data Scientist & AI Engineer',
+    title: 'Ashwin Ram | AI Portfolio',
     description: 'Chicago-based data scientist obsessed with turning messy data into market-moving insight.',
   },
   robots: {
@@ -60,6 +60,72 @@ export const metadata: Metadata = {
   },
 }
 
+// Structured data for SEO
+const personStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Ashwin Ram',
+  alternateName: 'Ashwin Ram Venkataraman',
+  jobTitle: 'Data Scientist & AI Engineer',
+  description: 'Chicago-based data scientist obsessed with turning messy data into market-moving insight. I build scalable ML & GenAI solutions that ship.',
+  url: 'https://ashwinram.dev',
+  sameAs: [
+    'https://github.com/ashwinram',
+    'https://linkedin.com/in/ashwinram',
+  ],
+  alumniOf: {
+    '@type': 'Organization',
+    name: 'University of Chicago',
+    url: 'https://uchicago.edu',
+  },
+  worksFor: [
+    {
+      '@type': 'Organization',
+      name: 'Evoke Technologies',
+      url: 'https://evoketechnologies.com',
+    },
+    {
+      '@type': 'Organization',
+      name: 'Argonne National Laboratory',
+      url: 'https://www.anl.gov',
+    },
+  ],
+  knowsAbout: [
+    'Machine Learning',
+    'Artificial Intelligence',
+    'Data Science',
+    'Deep Learning',
+    'Computer Vision',
+    'Natural Language Processing',
+    'ETL/Data Engineering',
+    'Real-time Systems',
+  ],
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Chicago',
+    addressRegion: 'IL',
+    addressCountry: 'US',
+  },
+}
+
+const websiteStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Ashwin Ram AI Portfolio',
+  description: 'Portfolio website of Ashwin Ram, Data Scientist & AI Engineer',
+  url: 'https://ashwinram.dev',
+  author: {
+    '@type': 'Person',
+    name: 'Ashwin Ram',
+  },
+  publisher: {
+    '@type': 'Person',
+    name: 'Ashwin Ram',
+  },
+  inLanguage: 'en-US',
+  isAccessibleForFree: true,
+}
+
 export default function RootLayout({
   children,
 }: {
@@ -67,6 +133,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personStructuredData) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteStructuredData) }}
+        />
+      </head>
       <body className={cn(
         "min-h-screen font-sans antialiased",
         inter.variable,
