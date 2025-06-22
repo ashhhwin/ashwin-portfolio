@@ -71,7 +71,7 @@ const personStructuredData = {
   url: 'https://hireashwin.com',
   sameAs: [
     'https://github.com/ashwinram',
-    'https://linkedin.com/in/ashwinram',
+    'https://www.linkedin.com/in/ashwinramv/',
   ],
   alumniOf: {
     '@type': 'Organization',

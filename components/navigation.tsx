@@ -102,7 +102,7 @@ export function Navigation({ onShowEducation }: NavigationProps) {
 
           {/* Centered Desktop Navigation */}
           <div className="flex-1 justify-center hidden md:flex">
-            <div className="flex items-baseline space-x-4">
+            <div className="flex items-baseline md:space-x-2 lg:space-x-4">
               {navItems.map((item) => (
                 <motion.button
                   key={item.name}

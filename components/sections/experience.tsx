@@ -115,19 +115,19 @@ export function Experience({ selectedExpertise }: ExperienceProps) {
   };
 
   return (
-    <section id="experience" ref={ref} className="py-16">
-      <div className="container mx-auto px-6 lg:px-8">
+    <section id="experience" ref={ref} className="py-12 sm:py-16">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           <motion.div 
-            className="text-center mb-12"
+            className="text-center mb-8 sm:mb-12"
             variants={headerVariants}
             initial="hidden"
             animate={isInView ? "visible" : "hidden"}
           >
-            <h2 className="text-4xl lg:text-5xl font-bold text-foreground tracking-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground tracking-tight">
               Professional Journey
             </h2>
-            <p className="text-xl text-muted-foreground font-light leading-relaxed mt-6 max-w-2xl mx-auto">
+            <p className="text-lg sm:text-xl text-muted-foreground font-light leading-relaxed mt-4 sm:mt-6 max-w-2xl mx-auto">
               My journey across different industries and challenges.
             </p>
           </motion.div>
@@ -139,66 +139,69 @@ export function Experience({ selectedExpertise }: ExperienceProps) {
             animate={isInView ? "visible" : "hidden"}
           >
             {/* The timeline line */}
-            <div className="absolute left-4 md:left-1/2 top-0 h-full w-0.5 bg-border"></div>
+            <div className="absolute left-4 md:left-8 lg:left-1/2 top-0 h-full w-0.5 bg-border"></div>
 
             {filteredExperience.map((job, index) => (
               <motion.div 
                 key={job.id} 
-                className="mb-12 relative"
+                className="mb-8 sm:mb-12 relative"
                 variants={itemVariants}
               >
                 <div className="flex md:items-center">
                   {/* Timeline Dot */}
-                  <div className="hidden md:flex absolute top-5 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-background border-2 border-primary items-center justify-center">
+                  <div className="hidden lg:flex absolute top-5 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-background border-2 border-primary items-center justify-center">
                     <Briefcase className="w-4 h-4 text-primary" />
                   </div>
-                  <div className="md:hidden absolute top-0 left-0 w-8 h-8 rounded-full bg-background border-2 border-primary flex items-center justify-center">
+                  <div className="md:hidden lg:hidden absolute top-0 left-0 w-8 h-8 rounded-full bg-background border-2 border-primary flex items-center justify-center">
+                    <Briefcase className="w-4 h-4 text-primary" />
+                  </div>
+                  <div className="hidden md:flex lg:hidden absolute top-5 left-8 -translate-x-1/2 w-8 h-8 rounded-full bg-background border-2 border-primary items-center justify-center">
                     <Briefcase className="w-4 h-4 text-primary" />
                   </div>
 
                   {/* Content */}
-                  <div className={`w-full pl-12 md:pl-0 ${index % 2 === 0 ? 'md:pr-16 md:text-right' : 'md:pl-16'}`}>
-                    <div className={`md:w-1/2 ${index % 2 === 0 ? 'md:float-left' : 'md:float-right'}`}>
-                      <div className={`flex items-center gap-3 mb-3 ${index % 2 === 0 ? 'md:justify-end' : 'md:justify-start'}`}>
+                  <div className={`w-full pl-12 md:pl-16 lg:pl-0 ${index % 2 === 0 ? 'lg:pr-16 lg:text-right' : 'lg:pl-16'}`}>
+                    <div className={`lg:w-1/2 ${index % 2 === 0 ? 'lg:float-left' : 'lg:float-right'}`}>
+                      <div className={`flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3 ${index % 2 === 0 ? 'lg:justify-end' : 'lg:justify-start'}`}>
                         <CompanyLogo logo={job.logo} company={job.company} />
                         <div>
-                          <h3 className="text-xl font-semibold text-primary leading-tight">{job.role}</h3>
+                          <h3 className="text-lg sm:text-xl font-semibold text-primary leading-tight">{job.role}</h3>
                           <div className="flex items-center gap-2">
                             {job.website ? (
                               <a
                                 href={job.website}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-lg font-medium text-foreground hover:text-primary transition-colors"
+                                className="text-base sm:text-lg font-medium text-foreground hover:text-primary transition-colors"
                               >
                                 {job.company}
                               </a>
                             ) : (
-                              <p className="text-lg font-medium text-foreground">{job.company}</p>
+                              <p className="text-base sm:text-lg font-medium text-foreground">{job.company}</p>
                             )}
                           </div>
                         </div>
                       </div>
                       
-                      <div className={`flex items-center gap-4 text-sm text-muted-foreground mb-4 ${index % 2 === 0 ? 'md:justify-end' : 'md:justify-start'}`}>
-                          <span className="flex items-center gap-2"><Calendar size={16}/> {job.duration}</span>
-                          <span className="flex items-center gap-2"><MapPin size={16}/> {job.location}</span>
+                      <div className={`flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-4 ${index % 2 === 0 ? 'lg:justify-end' : 'lg:justify-start'}`}>
+                          <span className="flex items-center gap-1 sm:gap-2"><Calendar size={14} className="sm:w-4 sm:h-4"/> {job.duration}</span>
+                          <span className="flex items-center gap-1 sm:gap-2"><MapPin size={14} className="sm:w-4 sm:h-4"/> {job.location}</span>
                       </div>
                       
-                      <ul className="space-y-3 text-left">
+                      <ul className="space-y-2 sm:space-y-3 text-left">
                         {job.highlights.map((highlight, i) => (
-                          <li key={i} className="flex items-start text-muted-foreground">
-                            <CheckCircle className="h-5 w-5 text-primary mr-3 mt-1 flex-shrink-0" />
+                          <li key={i} className="flex items-start text-muted-foreground text-sm sm:text-base">
+                            <CheckCircle className="h-4 w-4 sm:h-5 sm:w-5 text-primary mr-2 sm:mr-3 mt-0.5 sm:mt-1 flex-shrink-0" />
                             <span>{highlight}</span>
                           </li>
                         ))}
                       </ul>
                       
-                      <div className={`flex flex-wrap gap-2 mt-4 ${index % 2 === 0 ? 'md:justify-end' : 'md:justify-start'}`}>
+                      <div className={`flex flex-wrap gap-1.5 sm:gap-2 mt-3 sm:mt-4 ${index % 2 === 0 ? 'lg:justify-end' : 'lg:justify-start'}`}>
                         {job.technologies.map((tech) => (
                           <span
                             key={tech}
-                            className="px-3 py-1 bg-primary/10 text-primary text-xs rounded-full border border-primary/20"
+                            className="px-2 sm:px-3 py-1 bg-primary/10 text-primary text-xs rounded-full border border-primary/20"
                           >
                             {tech}
                           </span>

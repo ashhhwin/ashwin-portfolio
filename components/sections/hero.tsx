@@ -62,12 +62,12 @@ const SkillPlexus = ({ setSelectedExpertise }: { setSelectedExpertise: (expertis
   const [positions, setPositions] = useState(() => {
     const seed = 12345;
     return topics.map((_, i) => {
-      const x = 25 + ((seed + i * 7) % 50); // Reduced range to prevent edge clipping
-      const y = 25 + ((seed + i * 11) % 50); // Reduced range to prevent edge clipping
+      const x = 15 + ((seed + i * 7) % 70); // Add more padding
+      const y = 15 + ((seed + i * 11) % 70); // Add more padding
       return {
         x, y,
-        vx: ((seed + i * 13) % 6 - 3) * 0.05, // Reduced velocity range and speed
-        vy: ((seed + i * 17) % 6 - 3) * 0.05, // Reduced velocity range and speed
+        vx: ((seed + i * 13) % 6 - 3) * 0.05,
+        vy: ((seed + i * 17) % 6 - 3) * 0.05,
       };
     });
   });
@@ -96,13 +96,13 @@ const SkillPlexus = ({ setSelectedExpertise }: { setSelectedExpertise: (expertis
           newVx = Math.max(-maxVelocity, Math.min(maxVelocity, newVx));
           newVy = Math.max(-maxVelocity, Math.min(maxVelocity, newVy));
 
-          // Bounce off boundaries with more conservative margins
+          // Bounce off boundaries with wider margins
           if (newX < 15 || newX > 85) { 
-            newVx = -newVx * 0.8; // Add damping to prevent oscillation
+            newVx = -newVx * 0.8;
             newX = newX < 15 ? 15 : 85; 
           }
           if (newY < 15 || newY > 85) { 
-            newVy = -newVy * 0.8; // Add damping to prevent oscillation
+            newVy = -newVy * 0.8;
             newY = newY < 15 ? 15 : 85; 
           }
 
@@ -149,11 +149,11 @@ const SkillPlexus = ({ setSelectedExpertise }: { setSelectedExpertise: (expertis
   };
 
   if (!mounted) {
-    return <div className="relative w-full h-[700px] lg:h-[800px] overflow-hidden"><div className="absolute inset-0 bg-grid-pattern opacity-20"></div></div>;
+    return <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]"><div className="absolute inset-0 bg-grid-pattern opacity-20"></div></div>;
   }
 
   return (
-    <div className="relative w-full h-[700px] lg:h-[800px] overflow-hidden">
+    <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
       <div className="absolute inset-0 bg-grid-pattern opacity-20"></div>
       <svg className="absolute inset-0 w-full h-full pointer-events-none">
         {positions.map((pos1, i) =>
@@ -226,87 +226,13 @@ const SkillPlexus = ({ setSelectedExpertise }: { setSelectedExpertise: (expertis
           </div>
         );
       })}
-      
-      {/* Subtle instruction line */}
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2">
-        <motion.div 
-          className="relative"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.5 }}
-        >
-          <motion.p 
-            className="text-sm font-medium tracking-wide relative z-10"
-            animate={{ 
-              textShadow: [
-                "0 0 0px rgba(139, 92, 246, 0), 0 0 0px rgba(139, 92, 246, 0)",
-                "0 0 8px rgba(139, 92, 246, 0.6), 0 0 16px rgba(139, 92, 246, 0.4)",
-                "0 0 0px rgba(139, 92, 246, 0), 0 0 0px rgba(139, 92, 246, 0)"
-              ],
-              scale: [1, 1.02, 1],
-              y: [0, -2, 0]
-            }}
-            transition={{ 
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          >
-            <span className="text-primary/70">Filter portfolio by <span className="font-semibold text-primary">Expertise</span></span>
-          </motion.p>
-          {/* Glow effect behind text */}
-          <motion.div 
-            className="absolute inset-0 blur-sm"
-            animate={{ 
-              opacity: [0.3, 0.7, 0.3],
-              scale: [1, 1.05, 1],
-              rotate: [0, 1, 0]
-            }}
-            transition={{ 
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          >
-            <div className="w-full h-full bg-gradient-to-r from-primary/20 via-secondary/20 to-primary/20 rounded-full"></div>
-          </motion.div>
-          {/* Additional floating particles */}
-          <motion.div
-            className="absolute -top-2 -left-2 w-1 h-1 bg-primary/40 rounded-full"
-            animate={{
-              y: [0, -8, 0],
-              opacity: [0.4, 1, 0.4],
-              scale: [1, 1.5, 1]
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 0.5
-            }}
-          />
-          <motion.div
-            className="absolute -top-1 -right-2 w-1 h-1 bg-secondary/40 rounded-full"
-            animate={{
-              y: [0, -6, 0],
-              opacity: [0.4, 1, 0.4],
-              scale: [1, 1.3, 1]
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 1
-            }}
-          />
-        </motion.div>
-      </div>
     </div>
   );
 };
 
 export function Hero({ setSelectedExpertise }: { setSelectedExpertise: (expertise: string | null) => void }) {
   const [animationStep, setAnimationStep] = useState(0);
+  const [sparkles, setSparkles] = useState<any[]>([]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -315,8 +241,19 @@ export function Hero({ setSelectedExpertise }: { setSelectedExpertise: (expertis
     return () => clearTimeout(timer);
   }, []);
 
+  useRandomInterval(
+    () => {
+      const now = Date.now();
+      const newSparkle = generateSparkle("New opportunity!");
+      const nextSparkles = sparkles.filter(sp => now - sp.createdAt < 1000);
+      nextSparkles.push(newSparkle);
+      setSparkles(nextSparkles);
+    },
+    2000, 3500
+  );
+
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section id="home" className="relative h-screen flex flex-col items-center justify-center text-center overflow-hidden pt-16">
       {/* Animated background elements */}
       <div className="absolute inset-0 bg-grid-pattern opacity-20"></div>
       
@@ -324,30 +261,36 @@ export function Hero({ setSelectedExpertise }: { setSelectedExpertise: (expertis
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-pulse"></div>
       <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-secondary/5 rounded-full blur-3xl animate-pulse" style={{animationDelay: '2s'}}></div>
       
-      <div className="container mx-auto px-6 lg:px-8 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Text Content */}
           <motion.div
-            className="text-center lg:text-left"
+            className="text-center lg:text-left order-1 lg:order-1"
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
             <motion.div 
-              className="inline-flex items-center gap-3 mb-8 px-4 py-2 rounded-full bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/20 backdrop-blur-sm"
+              className="inline-flex items-center gap-2 sm:gap-3 mb-6 sm:mb-8 px-3 sm:px-4 py-2 rounded-full bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/20 backdrop-blur-sm"
               initial={{ opacity: 0, y: 20, scale: 0.9 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.1 }}
             >
-              {/* LED indicator */}
-              <div className="w-2 h-2 rounded-full animate-pulse ring-2 ring-green-200/50" style={{ backgroundColor: '#00FF00', boxShadow: '0 0 10px #00FF00, 0 0 20px #00FF00, 0 0 30px #00FF00' }}></div>
-              <span className="text-sm text-primary font-semibold tracking-wide">
+              <motion.div
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.5 }}
+              >
+                {/* LED indicator */}
+                <div className="w-2 h-2 rounded-full animate-pulse ring-2 ring-green-200/50" style={{ backgroundColor: '#00FF00', boxShadow: '0 0 10px #00FF00, 0 0 20px #00FF00, 0 0 30px #00FF00' }}></div>
+              </motion.div>
+              <span className="text-xs sm:text-sm text-primary font-semibold tracking-wide">
                 Open to opportunities
               </span>
             </motion.div>
             
             <motion.h1 
-              className="text-5xl lg:text-7xl font-heading font-light text-foreground tracking-tight mb-6"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-heading font-light text-foreground tracking-tight mb-4 sm:mb-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -356,22 +299,22 @@ export function Hero({ setSelectedExpertise }: { setSelectedExpertise: (expertis
             </motion.h1>
             
             <motion.div 
-              className="space-y-4 mb-8 text-center lg:text-left"
+              className="space-y-3 sm:space-y-4 mb-6 sm:mb-8 text-center lg:text-left"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              <p className="flex flex-wrap items-baseline justify-center lg:justify-start gap-x-2 text-lg text-muted-foreground">
+              <p className="flex flex-wrap items-baseline justify-center lg:justify-start gap-x-1 sm:gap-x-2 text-sm sm:text-lg text-muted-foreground">
                 <GlowText text="Building depth estimation for ADAS" />
-                <span className="text-primary font-medium inline-flex items-baseline gap-2">
+                <span className="text-primary font-medium inline-flex items-baseline gap-1 sm:gap-2">
                   <span className="text-muted-foreground/50">@</span>
                   <span>Argonne National Laboratory</span>
                 </span>
               </p>
               
-              <p className="flex flex-wrap items-baseline justify-center lg:justify-start gap-x-2 text-lg text-muted-foreground/80">
+              <p className="flex flex-wrap items-baseline justify-center lg:justify-start gap-x-1 sm:gap-x-2 text-sm sm:text-lg text-muted-foreground/80">
                 <span className="font-medium">Certified in Data Science &amp; AI Engineering by</span>
-                <span className="inline-flex items-baseline gap-2">
+                <span className="inline-flex items-baseline gap-1 sm:gap-2">
                   <span className="font-semibold">
                     <span style={{ color: '#4285F4' }}>G</span>
                     <span style={{ color: '#EA4335' }}>o</span>
@@ -385,7 +328,7 @@ export function Hero({ setSelectedExpertise }: { setSelectedExpertise: (expertis
                 </span>
               </p>
               
-              <p className="flex flex-wrap items-baseline justify-center lg:justify-start gap-x-2 text-lg text-muted-foreground/80">
+              <p className="flex flex-wrap items-baseline justify-center lg:justify-start gap-x-1 sm:gap-x-2 text-sm sm:text-lg text-muted-foreground/80">
                 <span className="font-medium">MS in Applied Data Science at</span>
                 <span className="font-semibold" style={{ color: '#800000' }}>University of Chicago</span>
               </p>
@@ -394,12 +337,86 @@ export function Hero({ setSelectedExpertise }: { setSelectedExpertise: (expertis
 
           {/* Skill Plexus */}
           <motion.div
-            className="relative"
+            className="relative order-2 lg:order-2 flex flex-col items-center"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
             <SkillPlexus setSelectedExpertise={setSelectedExpertise} />
+            {/* Subtle instruction line */}
+            <div className="mt-4">
+              <motion.div 
+                className="relative"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1, delay: 0.5 }}
+              >
+                <motion.p 
+                  className="text-xs sm:text-sm font-medium tracking-wide relative z-10"
+                  animate={{ 
+                    textShadow: [
+                      "0 0 0px rgba(139, 92, 246, 0), 0 0 0px rgba(139, 92, 246, 0)",
+                      "0 0 8px rgba(139, 92, 246, 0.6), 0 0 16px rgba(139, 92, 246, 0.4)",
+                      "0 0 0px rgba(139, 92, 246, 0), 0 0 0px rgba(139, 92, 246, 0)"
+                    ],
+                    scale: [1, 1.02, 1],
+                    y: [0, -2, 0]
+                  }}
+                  transition={{ 
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                >
+                  <span className="text-primary/70">Filter portfolio by <span className="font-semibold text-primary">Expertise</span></span>
+                </motion.p>
+                {/* Glow effect behind text */}
+                <motion.div 
+                  className="absolute inset-0 blur-sm"
+                  animate={{ 
+                    opacity: [0.3, 0.7, 0.3],
+                    scale: [1, 1.05, 1],
+                    rotate: [0, 1, 0]
+                  }}
+                  transition={{ 
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                >
+                  <div className="w-full h-full bg-gradient-to-r from-primary/20 via-secondary/20 to-primary/20 rounded-full"></div>
+                </motion.div>
+                {/* Additional floating particles */}
+                <motion.div
+                  className="absolute -top-2 -left-2 w-1 h-1 bg-primary/40 rounded-full"
+                  animate={{
+                    y: [0, -8, 0],
+                    opacity: [0.4, 1, 0.4],
+                    scale: [1, 1.5, 1]
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 0.5
+                  }}
+                />
+                <motion.div
+                  className="absolute -top-1 -right-2 w-1 h-1 bg-secondary/40 rounded-full"
+                  animate={{
+                    y: [0, -6, 0],
+                    opacity: [0.4, 1, 0.4],
+                    scale: [1, 1.3, 1]
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                    delay: 1
+                  }}
+                />
+              </motion.div>
+            </div>
           </motion.div>
         </div>
       </div>
