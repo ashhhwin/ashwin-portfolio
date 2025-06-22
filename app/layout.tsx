@@ -20,8 +20,8 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: 'Ashwin Ram | AI Portfolio',
-  description: 'Chicago-based data scientist obsessed with turning messy data into market-moving insight. I build scalable ML & GenAI solutions that ship.',
-  keywords: ['data scientist', 'AI engineer', 'machine learning', 'Chicago', 'UChicago', 'portfolio'],
+  description: 'Graduate student at UChicago passionate about data science and machine learning. Learning to turn complex data into meaningful insights.',
+  keywords: ['data scientist', 'AI engineer', 'machine learning', 'Chicago', 'UChicago', 'portfolio', 'grad student'],
   authors: [{ name: 'Ashwin Ram' }],
   creator: 'Ashwin Ram',
   metadataBase: new URL('https://hireashwin.com'),
@@ -30,13 +30,13 @@ export const metadata: Metadata = {
     locale: 'en_US',
     url: 'https://hireashwin.com',
     title: 'Ashwin Ram | AI Portfolio',
-    description: 'Chicago-based data scientist obsessed with turning messy data into market-moving insight.',
+    description: 'Graduate student at UChicago passionate about data science and machine learning.',
     siteName: 'Ashwin Ram Portfolio',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Ashwin Ram | AI Portfolio',
-    description: 'Chicago-based data scientist obsessed with turning messy data into market-moving insight.',
+    description: 'Graduate student at UChicago passionate about data science and machine learning.',
   },
   robots: {
     index: true,
@@ -66,8 +66,8 @@ const personStructuredData = {
   '@type': 'Person',
   name: 'Ashwin Ram',
   alternateName: 'Ashwin Ram Venkataraman',
-  jobTitle: 'Data Scientist & AI Engineer',
-  description: 'Chicago-based data scientist obsessed with turning messy data into market-moving insight. I build scalable ML & GenAI solutions that ship.',
+  jobTitle: 'Graduate Student',
+  description: 'Graduate student at UChicago passionate about data science and machine learning. Learning to turn complex data into meaningful insights.',
   url: 'https://hireashwin.com',
   sameAs: [
     'https://github.com/ashwinram',
@@ -112,7 +112,7 @@ const websiteStructuredData = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   name: 'Ashwin Ram AI Portfolio',
-  description: 'Portfolio website of Ashwin Ram, Data Scientist & AI Engineer',
+  description: 'Portfolio website of Ashwin Ram, Graduate Student at UChicago',
   url: 'https://hireashwin.com',
   author: {
     '@type': 'Person',
