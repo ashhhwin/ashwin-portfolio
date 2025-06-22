@@ -5,6 +5,7 @@ import { useInView } from "framer-motion"
 import { useRef } from "react"
 import { certifications } from "@/data/certifications"
 import { Award, ExternalLink } from "lucide-react"
+import Image from "next/image"
 
 export function Certifications() {
   const ref = useRef(null)
@@ -52,28 +53,26 @@ export function Certifications() {
                 className={`group p-6 rounded-xl border border-primary/20 bg-primary/5 ${cert.url ? 'cursor-pointer' : ''}`}
                 onClick={() => cert.url && window.open(cert.url, '_blank', 'noopener,noreferrer')}
               >
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-12 h-12 bg-background border border-border rounded-lg flex items-center justify-center overflow-hidden">
+                <div className="flex items-center gap-4">
+                  <div className="flex-shrink-0">
                     {cert.logo ? (
-                      <img
+                      <Image
                         src={cert.logo}
                         alt={`${cert.issuer} logo`}
-                        className="object-contain w-8 h-8"
+                        width={40}
+                        height={40}
+                        className="rounded-md"
                       />
                     ) : (
-                      <Award className="w-6 h-6 text-primary" />
+                      <div className="w-10 h-10 bg-muted rounded-md flex items-center justify-center">
+                        <Award className="w-6 h-6 text-muted-foreground" />
+                      </div>
                     )}
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2">
-                      <h3 className="font-semibold text-foreground group-hover:text-primary transition-colors">
-                        {cert.name}
-                      </h3>
-                      {cert.url && (
-                        <ExternalLink className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
-                      )}
-                    </div>
-                    <p className="text-sm text-muted-foreground mt-1">{cert.issuer} • {cert.year}</p>
+                  <div className="flex-grow">
+                    <h3 className="text-lg font-semibold text-foreground">
+                      {cert.name}
+                    </h3>
                   </div>
                 </div>
               </motion.div>

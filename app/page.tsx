@@ -6,7 +6,7 @@ import { Projects } from "@/components/sections/projects";
 import { Experience } from "@/components/sections/experience";
 import { Education } from "@/components/sections/education";
 import { Certifications } from "@/components/sections/certifications";
-import { Contact } from "@/components/sections/contact";
+import Contact from "@/components/sections/contact";
 import { Navigation } from "@/components/navigation";
 import { NavigationWrapper } from "@/components/navigation-wrapper";
 
