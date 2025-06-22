@@ -24,11 +24,11 @@ export const metadata: Metadata = {
   keywords: ['data scientist', 'AI engineer', 'machine learning', 'Chicago', 'UChicago', 'portfolio'],
   authors: [{ name: 'Ashwin Ram' }],
   creator: 'Ashwin Ram',
-  metadataBase: new URL('https://ashwinram.dev'),
+  metadataBase: new URL('https://hireashwin.com'),
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://ashwinram.dev',
+    url: 'https://hireashwin.com',
     title: 'Ashwin Ram | AI Portfolio',
     description: 'Chicago-based data scientist obsessed with turning messy data into market-moving insight.',
     siteName: 'Ashwin Ram Portfolio',
@@ -68,7 +68,7 @@ const personStructuredData = {
   alternateName: 'Ashwin Ram Venkataraman',
   jobTitle: 'Data Scientist & AI Engineer',
   description: 'Chicago-based data scientist obsessed with turning messy data into market-moving insight. I build scalable ML & GenAI solutions that ship.',
-  url: 'https://ashwinram.dev',
+  url: 'https://hireashwin.com',
   sameAs: [
     'https://github.com/ashwinram',
     'https://linkedin.com/in/ashwinram',
@@ -113,7 +113,7 @@ const websiteStructuredData = {
   '@type': 'WebSite',
   name: 'Ashwin Ram AI Portfolio',
   description: 'Portfolio website of Ashwin Ram, Data Scientist & AI Engineer',
-  url: 'https://ashwinram.dev',
+  url: 'https://hireashwin.com',
   author: {
     '@type': 'Person',
     name: 'Ashwin Ram',

@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://ashwinram.dev/sitemap.xml
+Sitemap: https://hireashwin.com/sitemap.xml
 
 # Crawl-delay for respectful crawling
 Crawl-delay: 1 
